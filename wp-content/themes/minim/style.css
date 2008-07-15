@@ -1,0 +1,222 @@
+/*   
+Theme Name: Upstart Blogger Minim
+Theme URI: http://www.upstartblogger.com
+Description: A minimalist, <b>widgetized</b> theme from <a href="http://www.upstartblogger.com/" title="Upstart Blogger">Upstart Blogger</a>. 
+Author: Robert Ellis
+Author URI: http://www.upstartblogger.com
+Version: 1.0
+License: Creative Commons Attribution-Share Alike 3.0 (http://creativecommons.org/licenses/by-sa/3.0/). Feel free to make any changes, but please keep a link back to Upstart Blogger in your sidebar or footer.
+*/
+
+body {
+	background-color: #fff;
+	font-family: Arial, Helvetica, Geneva, sans-serif;
+	padding: 20px;
+	font-size: .88em;
+	line-height: 1.5em;
+	color: #444444;
+}
+
+#container {
+	width: 840px;
+}
+
+#sidebar {
+	width: 336px;
+	float: left;
+	font-size: .8em;
+	line-height: 1.4em;
+	padding: 0 10px 25px 0;
+	}
+
+#sidebarleft {
+	width:180px;
+	float: left;
+}
+
+#sidebarright {
+	width: 125px;
+	float: right;
+}
+
+#footer {
+	width:180px;
+	float: left;
+	clear: both;
+	font-size: .64em;
+}
+
+#entries {
+	width: 468px;
+	float: right;
+	}
+
+.post {
+	margin-bottom: 1em;
+}
+
+a {
+	color: #6699cc;
+	text-decoration: none;
+	font-weight: bold;
+
+}
+
+a:link h3 {
+	color: #951400;
+	border: none;
+}
+
+a:link img {
+	border: none;
+}
+
+ul {
+	margin-left: 0px;
+	padding-left: 0px;
+	margin-top: 0px;
+	padding-bottom:4px;
+}
+
+li.linkcat {
+	list-style-type: none;
+}
+
+img {
+	border: none;
+}
+
+.imgleft {
+	float:left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.imgright {
+	float: right;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+img.frame {
+	padding: 2px;
+	border: solid 1px #DEE4E5;
+}
+
+
+
+h1 {
+	font-size: 2em;
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+.title {
+	border-bottom: 1px solid silver;
+}
+
+
+h3 {
+	font-weight: bold;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	margin-bottom: .2em;
+	margin-top: 2em;
+	letter-spacing: .2em;
+	color: #34353e;
+	border-bottom: 1px solid silver;
+}
+
+.post h3 {
+	border-bottom: none;
+	letter-spacing: normal;
+	margin-bottom: -.5em;
+}
+
+
+blockquote {
+	background-color: #f3f3f3;
+	padding: 10px;
+	margin: 15px 0;
+}
+
+
+
+/* Begin Comments*/
+
+.comments_tiny {
+	color: #b8b8b8;
+	border-bottom: 1px solid silver;
+}
+
+.alt {
+	margin: 0;
+	padding: 10px;
+	background: #f3f3f3;
+}
+
+.commentlist {
+	margin-top: 0px;
+
+}
+
+.commentlist li {
+	margin: 5px 0 0 0px;
+
+}
+
+.commentlist p {
+	margin: 10px 5px 10px 0;
+}
+
+#commentform p {
+	margin: 5px 0;
+}
+
+.nocomments {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.commentmetadata {
+	margin: 0;
+	display: block;
+}
+
+li.comment {
+	font-weight: bold;
+	padding: 10px;
+	list-style: none;
+}
+
+.commentlist p {
+	font-weight: normal;
+	line-height: 1.5em;
+	text-transform: none;
+}
+
+#commentform {
+	margin-top: 30px;
+}
+
+.commentmetadata {
+	font-weight: normal;
+}
+
+small, #sidebar ul ul li, #sidebar ul ol li, .nocomments, .postmetadata, blockquote, strike {
+	color: #777;
+}
+
+.content {
+	margin-bottom: 25px;
+	padding-left: 5px;
+	font-weight: normal;
+}
+
+.commentbox {
+	width: 100%;
+	height: 100px;
+}
+
+/* End Comments */
