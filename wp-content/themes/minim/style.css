@@ -72,10 +72,15 @@ a:link img {
 }
 
 ul {
+	list-style-type: none;
 	margin-left: 0px;
 	padding-left: 0px;
 	margin-top: 0px;
 	padding-bottom:4px;
+}
+
+.post ul {
+    list-style-type: disc;
 }
 
 li.linkcat {
