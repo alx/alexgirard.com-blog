@@ -9,8 +9,8 @@ $wp_cache_hello_world = 0; //Added by WP-Cache Manager
 define( 'WPCACHEHOME', ABSPATH .  "wp-content/plugins/wp-super-cache/" ); //Added by WP-Cache Manager
 
 $cache_compression = 0; // Super cache compression
-$cache_enabled = true; //Added by WP-Cache Manager
-$super_cache_enabled = true; //Added by WP-Cache Manager
+$cache_enabled = false; //Added by WP-Cache Manager
+$super_cache_enabled = false; //Added by WP-Cache Manager
 $cache_max_time = 3600; //in seconds
 //$use_flock = true; // Set it true or false if you know what to use
 $super_cache_max_time = 21600; // in seconds
