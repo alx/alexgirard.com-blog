@@ -1,0 +1,829 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WassUp 1.4.6\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-03-09 13:15+0100\n"
+"Last-Translator: Emrah Omuris <eomuris@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /home/m1k/Desktop/wassup_translation/trunk\n"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:32
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:381
+msgid "Sorry, Wassup requires SECRET_KEY constant declared in wp-config.php... Please read <a href='http://www.wpwp.org/download'>documentation</a> for more info..."
+msgstr "Üzgnüm, ancak WassUp'ın, wp-config.php dosyasında tanımlanan SECRET_KEY'e ihtiyacı var. Daha ayrıntılı bilgi için lütfen <a href='http://www.wpwp.org/download'>burayı</a> ziyaret ediniz."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:38
+msgid "Sorry, Wassup requires WordPress 2.2 or higher to work"
+msgstr "Üzgünüm, ancak WassUp'un çalışabilmesi için en düşük WordPress 2.2'ye sahip olmalısınız."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:259
+msgid "Hide Search"
+msgstr "Aramayı Gizle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:262
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:800
+msgid "Search"
+msgstr "Ara"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:267
+msgid "Hide TopTen"
+msgstr "En Çok Kullanılan 10'u Gizle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:270
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:800
+msgid "Show TopTen"
+msgstr "En Çok Kullanılan 10'u Göster"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:276
+msgid "Collapse All"
+msgstr "Tümünü Kapat"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:279
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:551
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:763
+msgid "Expand All"
+msgstr "Tümünü Aç"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:284
+msgid "Expand Cronology"
+msgstr "Kronolojiyi Aç"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:287
+msgid "Collapse Cronology"
+msgstr "Kronolojiyi Kapat"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:370
+msgid "Visitor Details"
+msgstr "Ziyaretçi Detayları"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:373
+msgid "Spy Visitors"
+msgstr "Ziyaretçileri Gözetle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:373
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:555
+msgid "SPY Visitors"
+msgstr "Ziyaretçileri GÖZETLE"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:374
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:472
+msgid "Current Visitors Online"
+msgstr "Çevrimiçi Ziyaretçiler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:375
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:45
+msgid "Options"
+msgstr "Seçenekler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:473
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:556
+msgid "Legend"
+msgstr "Lejand"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:473
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:556
+msgid "Logged-in Users"
+msgstr "Giriş Yapmış Kullanıcılar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:473
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:556
+msgid "Comments Authors"
+msgstr "Yorum Sahipleri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:473
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:556
+msgid "Spiders/bots"
+msgstr "Örümcekler/botlar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:477
+msgid "Visitors online"
+msgstr "Çevrimiçi ziyaretçiler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:492
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:841
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:600
+msgid "From your blog"
+msgstr "Blogunuzdan"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:495
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:844
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:603
+msgid "Direct hit"
+msgstr "Doğrudan hit"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:513
+msgid "LOGGED IN USER"
+msgstr "GİRİŞ YAPMIŞ KULLANICI"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:514
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:517
+msgid "COMMENT AUTHOR"
+msgstr "YORUM SAHİBİ"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:558
+msgid "Pause"
+msgstr "Duraklat"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:559
+msgid "Play"
+msgstr "Yürüt"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:647
+msgid "Latest hits"
+msgstr "Son girişler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:678
+msgid "WassUp recording is disabled"
+msgstr "WassUp kaydı etinkeştirilmemiş"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:688
+msgid "records deleted"
+msgstr "kayıtlar silindi"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:696
+msgid "hide chart"
+msgstr "grafiği gizle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:696
+msgid "Hide the chart and site usage"
+msgstr "Grafik ve site kullanımını gizle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:699
+msgid "show chart"
+msgstr "grafiği göster"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:699
+msgid "Show the chart and site usage"
+msgstr "Grafik ve site kullanımını göster"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:701
+msgid "Summary for the last"
+msgstr "İstatistikleri göster:"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:704
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:190
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:200
+msgid "24 hours"
+msgstr "24 saat"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:705
+msgid "7 days"
+msgstr "7 gün"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:706
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:192
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:202
+msgid "1 month"
+msgstr "1 ay"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:707
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:195
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:205
+msgid "1 year"
+msgstr "1 yıl"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:710
+msgid "Items per page"
+msgstr "adet öğe/sayfa"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:716
+msgid "Show items by"
+msgstr "Öğeleri diz"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:719
+msgid "Spider"
+msgstr "Örümcekler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:720
+msgid "NO Spider"
+msgstr "Örümcek dışındakiler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:721
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:93
+msgid "Spam"
+msgstr "Spam"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:722
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:94
+msgid "NO Spam"
+msgstr "Spam dışındakiler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:723
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:95
+msgid "NO Spam NO Spider"
+msgstr "Örümcek ve Spam dışındakiler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:724
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:96
+msgid "Users logged in"
+msgstr "Giriş yapmış kullanıcılar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:725
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:97
+msgid "Comment authors"
+msgstr "Yorum sahipleri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:726
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:98
+msgid "Referer from search engine"
+msgstr "Arama motorlarından gelenler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:727
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:99
+msgid "Referer from ext link"
+msgstr "Harici bağlantıdan gelenler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:728
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:90
+msgid "Everything"
+msgstr "Tümü"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:741
+msgid "Visits"
+msgstr "Ziyaret"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:742
+msgid "Pageviews"
+msgstr "Sayfa Görünümü"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:743
+msgid "Pages/Visits"
+msgstr "Sayfa/Ziyaret"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:746
+msgid "Spams"
+msgstr "Spam"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:754
+msgid "Too few records to print chart"
+msgstr "Grafik oluşturmak için yetersiz veri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:764
+msgid "Collapse Chronology"
+msgstr "Kronolojiyi Kapat"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:784
+msgid "Spam Options"
+msgstr "Spam Seçenekleri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:786
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:125
+msgid "Enable/Disable Spam Check on Records"
+msgstr "Kayıtlarda Spam Kontrolü Yap/Yapma"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:787
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:128
+msgid "Record Akismet comment spam attempts"
+msgstr "Akismet yorum spam girişlerini kaydet"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:788
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:129
+msgid "Record referrer spam attempts"
+msgstr "Yönlendirilen spam girişlerini kaydet"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:789
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:112
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:140
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:209
+msgid "Save Settings"
+msgstr "Ayarları Kaydet"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:796
+msgid "Filter by marked IP"
+msgstr "İşaretli IP'ye göre süz"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:796
+msgid "show marked items"
+msgstr "işaretli öğeleri göster"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:797
+msgid "Searched for"
+msgstr "Aranan veri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:798
+msgid "Auto refresh in"
+msgstr "Otomatik Yenile"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:798
+msgid "seconds"
+msgstr "saniye"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:857
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:862
+msgid "delete"
+msgstr "sil"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:857
+msgid "Delete ALL marked records with this IP"
+msgstr "Bu IP'ye sahip tüm işaretli kayıtları sil"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:859
+msgid "unmark"
+msgstr "seçimi kaldır"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:859
+msgid "UnMark IP"
+msgstr "IP seçimini kaldır"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:862
+msgid "Delete this record"
+msgstr "Bu kaydı sil"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:864
+msgid "mark"
+msgstr "işaretle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:864
+msgid "Mark IP"
+msgstr "IP'yi işaretle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:867
+msgid "show raw table"
+msgstr "salt tabloyu göster"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:867
+msgid "Show the items as raw table"
+msgstr "Öğeleri salt tabloda göster"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1436
+msgid "WassUp Plugin table has reached maximum size!"
+msgstr "WassUp Eklentisi tablosu en büyük boyutuna ulaştı!"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1437
+msgid "Hi"
+msgstr "Selam"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1437
+msgid "you have received this email because your WassUp Database table at your Wordpress blog"
+msgstr "Bu elektronik postayı aldınız çünkü WordPress blogunuzdaki WassUP veritabanı"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1437
+msgid "has reached the maximum value you set in the options menu"
+msgstr "sizin ayarlar penceresinde belirttiğiniz en yüksek boyuta ulaştı"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1438
+msgid "This is only a reminder, please take the actions you want in the WassUp options menu"
+msgstr "Bu posta size hatırlatmak amacı ile gönderilmiştir, lütfen WassUP seçenekleri menüsünü ziyaret ediniz"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1438
+msgid "This alert now will be removed and you will be able to set a new one"
+msgstr "Bu uyarı kaldırılacak. Eğer isterseniz yeni bir veritabanı uyarısı tanımlayabilirsiniz."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1439
+msgid "Thank you for using WassUp plugin. Check if there is a new version available here:"
+msgstr "WassUP eklentisini kullandığınız için teşekkür ediniz. Lütfen buradan eklentinin yeni sürümü olup olmadığını kontrol ediniz."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1439
+msgid "Have a nice day!"
+msgstr "İyi günler!"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1736
+msgid "Error getting table details"
+msgstr "Tablo verilerini alırken hata oluştu"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1744
+#, php-format
+msgid "Delete any existing table %s"
+msgstr "%s tablosundaki tüm veriyi sil."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1755
+#, php-format
+msgid "Table structure of table %s"
+msgstr "%s tablosunun tablo yaposo."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1763
+#, php-format
+msgid "Error with SHOW CREATE TABLE for %s."
+msgstr "%s için TABLO OLUŞUMUNU GÖSTER sırasında hata."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1770
+#, php-format
+msgid "Error getting table structure of %s"
+msgstr "%s tablo mimarisi alınırken hata oluştu."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1778
+#, php-format
+msgid "Data contents of table %s"
+msgstr "%s tablosunun verileri."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1839
+#, php-format
+msgid "End of data contents of table %s"
+msgstr "%s tablosundaki içeriğin sonu."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1874
+msgid "Last searched terms"
+msgstr "Son aranan terimler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1887
+msgid "Last referers"
+msgstr "Son yönlendirenler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1900
+msgid "Top Browsers"
+msgstr "En Çok Kullanılan Tarayıcılar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1913
+msgid "Top OS"
+msgstr "En Çok kullanılan İşletim Sistemleri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1935
+msgid "visitor(s) online"
+msgstr "ziyaretçi çevrimiçi"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1938
+msgid "logged-in user(s)"
+msgstr "giriş yapmış kullanıcı"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1942
+msgid "comment author(s)"
+msgstr "yorum sahipleri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1944
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:2097
+msgid "powered by"
+msgstr "destekleyen"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1976
+msgid "What title for the widget (default \"Visitors Online\")"
+msgstr "Bileşenin başlığı ne olsun (varsayılan \"Çevrimiçi Ziyaretçiler\")"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1977
+msgid "What style sheet class for &lt;ul&gt; attribute (default \"links\")"
+msgstr "&lt;ul&gt; verisi için hangi stil şablonu kullanılsın (varsayılan \"links\")"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1978
+msgid "How many characters left? (For template compatibility - default 18)"
+msgstr "Kaç karakter kaldı? (Tema uyumluluğu için - varsayılan 18)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1979
+msgid "Check if you want to show logged-in online users (default Yes)"
+msgstr "Eğer giriş yapmış kullanıcıları görüntülemek istiyorsanız işaretleyin (varsayılan Evet)."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1980
+msgid "Check if you want to show comment-author online users (default Yes)"
+msgstr "Yorum sahibi kullanıcıları görüntülemek istiyorsanız işaretleyin (varsayılan Evet)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1981
+msgid "Check if you want to show some last search referers (default Yes)"
+msgstr "Arama motorundan gelen ziyaretçileri görüntülemek istiyorsanız işaretleyin (varsayılan Evet)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1982
+msgid "How many search referers want to show (default 5)"
+msgstr "Kaç adet arama motoru referansı göstermek istersiniz (varsayılan 5)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1983
+msgid "Check if you want to show some last external referers (default Yes)"
+msgstr "Harici yönlendiricileri görüntülemek istiyorsanız işaretleyin (varsayılan Evet)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1984
+msgid "How many external referers want to show (default 5)"
+msgstr "Kaç adet harici yönlendiren site görüntülemek istersiniz (varsayılan 5)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1985
+msgid "Check if you want to show top browsers (default Yes)"
+msgstr "En çok kullanılan tarayıcıları görüntülemek istiyorsanız işaretleyin (varsayılan Evet)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1986
+msgid "How many top browsers want to show (default 5)"
+msgstr "Kaç adet arama motoru göstermek istersiniz (varsayılan 5)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1987
+msgid "Check if you want to show top operating systems (default Yes)"
+msgstr "En çok kullanılan işletim sistemlerini görüntülemek istiyorsanız işaretleyin (varsayılan Evet)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:1988
+msgid "How many top operating systems want to show (default 5)"
+msgstr "Kaç adet işletim sistemi görüntülemek istersiniz (varsayılan 5)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/wassup.php:2006
+msgid "Wassup Widget"
+msgstr "Wassup Eklentisi"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:29
+msgid "ATTENTION! Your WassUp table have reached the maximum value you set, I disabled the alert, you can re-enable it here."
+msgstr "UYARI! WassUp tablonuz belirttiğiniz en yüksek dosya boyutuna ulaştı. Uyarıyı iptal ettim, isterseniz buradan yeniden aktif edebilirsiniz."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:46
+msgid "You can add a sidebar Widget with some useful statistics information by activating the"
+msgstr "Bazı kullanışlı istatistik bilgilerini görüntüleyebileceğiniz yan menü eklentisini"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:47
+msgid "Wassup Widget in the Widgets menu option"
+msgstr "Eklentiler menüsü üzerinden WassUp Eklentisi üzerinden aktive edebilirsiniz"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:48
+msgid "Select the options you want for the WassUp plugin"
+msgstr "WassUp eklentisi için istediğiniz seçenekleri seçin"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:52
+msgid "General Setup"
+msgstr "Genel Kurulum"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:53
+msgid "Statistics Recording"
+msgstr "İstatistik Kaydı"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:54
+msgid "Manage Files & Database"
+msgstr "Dosya ve Veritabanlarını Yönet"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:60
+msgid "Your default screen resolution (browser width)"
+msgstr "Varsayılan ekran çözürlüğünüz (tarayıcı genişliği)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:61
+msgid "Default screen resolution (in pixels)"
+msgstr "Varsayılan ekran çözünürlüğü (piksel formatında)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:69
+msgid "Set minimum users level which can view and manage WassUp plugin (default Administrators)"
+msgstr "WassUp eklentisini yönetebilecek en düşük kullanıcı seviyesini giriniz (varsayılan Yöneticiler)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:72
+msgid "Administrators"
+msgstr "Yöneticiler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:73
+msgid "Contributors"
+msgstr "Katılımcılar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:74
+msgid "Authors"
+msgstr "Yazarlar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:77
+msgid "Visit Detail Settings"
+msgstr "Ziyaret Detayı Ayarları"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:78
+msgid "Chart type - How many axes:"
+msgstr "Grafik tipi - Kaç adet aks:"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:80
+msgid "One"
+msgstr "Bir"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:81
+msgid "Two"
+msgstr "İki"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:85
+msgid "Set how many minutes wait for automatic page refresh"
+msgstr "Otomatik sayfa tazelemesi için kaç dakika bekleyeceğinizi belirtin"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:85
+msgid "Current Visitors Online and Visitors Details"
+msgstr "Şimdiki Çevrimiçi Ziyaretçiler ve Ziyaretçi Detayları"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:86
+msgid "refresh minutes (default 3)"
+msgstr "yenilenecek dakika (varsayılan 3)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:88
+msgid "Show visitor details for"
+msgstr "Ziyaretçi bilgilerini göster"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:91
+msgid "Spiders"
+msgstr "Örümcekler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:92
+msgid "NO Spiders"
+msgstr "Örümcek dışındakiler"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:102
+msgid "Number of items per page"
+msgstr "Sayfa başına öğe"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:112
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:140
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:209
+msgid "Reset"
+msgstr "Sıfırla"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:112
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:140
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:209
+msgid "Reset to Default Settings"
+msgstr "Varsayılan Ayarlara Sıfırla"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:116
+msgid "Statistics Recording Settings"
+msgstr "İstatistik Kayıt Seçenekleri"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:117
+msgid "Enable/Disable Recording"
+msgstr "Kayıt Et / Etme"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:118
+msgid "Checkbox to record statistics for each type of \"visitor\""
+msgstr "Her bir \"ziyaretçi\" tipi için kayıt istatistikleri seçim kutusu"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:120
+msgid "Record logged in users"
+msgstr "Giriş yapmış kullanıcıları kayıt et"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:121
+msgid "Record spiders and bots"
+msgstr "Örümcekleri ve botları kaydet"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:122
+msgid "Record attack/exploit attempts (libwww-perl agent)"
+msgstr "Atak/saldırı girişlerini kaydet (libwww-perl agent)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:125
+msgid "(WARNING: if you experience blog slows down, please try to disable spam check)"
+msgstr "(UYARI: Eğer blogunuz yavaşlarsa, spam kontrolünü iptal etmeyi deneyin)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:126
+msgid "Checkbox to record statistics for each type of \"spam\""
+msgstr "Her bir \"spam\" tipi için kayıt istatistikleri seçim kutusu"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:132
+msgid "Enter source IPs to exclude from recording"
+msgstr "Kayıt edilmeyecek kaynak IP adreslerini girin"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:134
+msgid "comma separated value (ex: 127.0.0.1, 10.0.0.1, etc...)"
+msgstr "verileri virgülle ayırın (ör: 127.0.0.1, 10.0.0.1, vb.)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:135
+msgid "Enter requested URLs to exclude from recording"
+msgstr "Kayıt edilmeyecek URLleri girin"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:137
+msgid "comma separated value, don't put the entire url, only the last path or some word to exclude (ex: /category/wordpress, 2007, etc...)"
+msgstr "verileri virgülle ayırın, tam adresi girmeyin, sadece adresin son kısmı ya da kayıt edilmeyecek kelimeleri girin (ör: /category/wordpress, 2007, vb.)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:144
+msgid "Temporary files location folder"
+msgstr "Geçici dosyaların kaydedileceği klasör"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:146
+msgid "\"Save path\" directory for storing temporary files used to track visitor activity"
+msgstr "Ziyaretçi aktivitelerinin kaydedilebileceği \"kayıt klasörü\""
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:155
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:164
+msgid "WARNING"
+msgstr "UYARI"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:155
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:164
+msgid "Directory does not exist or is not writable. Please enter a different path above or change \"session.save_path\" in \"php.ini\" to point to a valid, writable folder"
+msgstr "Belirlediğiniz klasör ya yok ya da yazılabilir değil. Lütfen yukarıya başka bir adres girin ya da \"php.ini\" dosyasındaki \"session.save_path\" verisini geçerli yazılabilir bir klasöre yöneltin"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:161
+msgid "Note: To adjust, change the above path or edit \"sessions.save_path\" in"
+msgstr "Not: Ayarlamak için ya yukarıdaki değiştirin ya da şuradaki \"sessions.save_path\" verisini değiştirin"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:170
+msgid "Use absolute directory paths only. This value is usually"
+msgstr "Direkt klasör yolu kullanın. Bu veri genellikle"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:174
+msgid "Select actions for table growth"
+msgstr "Tablo büyüklüğü için yapılacakları seçin"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:175
+msgid "WassUp table grows very fast (especially if your blog is frequently visited), I recommend you to delete old records sometimes. You can select any option below to reset it, delete old records automatically or manually. (If you haven't database space problems you can leave the table as is)"
+msgstr "WassUp tablosu çok hızlı büyür (özellikle blogunuz sık ziyaret ediliyorsa), size tavsiyem eski istatistikleri belirli aralıklarla silmeniz. Aşağıdan, sıfırlamak ya da eski kayıtların otomatik ya da el ile silinmesi için gerekli ayarları seçebilirsiniz. (Veritabanı büyüklüğü probleminiz yoksa tabloyu olduğu gibi bırakabilirsiniz)"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:176
+msgid "Current WassUp table usage is"
+msgstr "Geçerli WassUp veritabanı kullanımı"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:181
+msgid "records"
+msgstr "kayıt"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:184
+msgid "Alert me"
+msgstr "Beni uyar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:184
+msgid "email to"
+msgstr "email gönder"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:184
+msgid "when table reaches"
+msgstr "tablo boyutu şuna yaklaştığında"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:186
+msgid "Empty table"
+msgstr "Tabloyu boşalt"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:186
+msgid "export table in SQL format"
+msgstr "Tabloyu SQL formatında aktar"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:187
+msgid "Automatically delete records older than:"
+msgstr "Şundan daha eski kayıtları otomatik olarak sil:"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:189
+msgid "Don't delete anything"
+msgstr "Hiçbir şeyi silme"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:191
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:201
+msgid "1 week"
+msgstr "1 hafta"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:193
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:203
+msgid "3 months"
+msgstr "3 ay"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:194
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:204
+msgid "6 months"
+msgstr "6 ay"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:197
+msgid "Delete NOW records older than:"
+msgstr "Şundan daha eski kayıtları ŞİMDİ sil:"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/settings.php:199
+msgid "Action is NOT undoable"
+msgstr "Bu uygulama geri alınamaz"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/action.php:86
+msgid "TOP QUERY"
+msgstr "EN ÇOK KULLANILAN ANAHTAR KELİME"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/action.php:96
+msgid "TOP REFERER"
+msgstr "EN ÇOK YÖNLENDİREN"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/action.php:124
+msgid "TOP REQUEST"
+msgstr "EN ÇOK İSTEK"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/action.php:136
+msgid "TOP BROWSER"
+msgstr "EN SIK KULLANILAN TARAYICI"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/action.php:148
+msgid "TOP OS"
+msgstr "EN ÇOK KULLANILAN İŞLETİM SİSTEMİ"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/action.php:160
+msgid "This top ten doesn't include Spam records"
+msgstr "En çok kullanılan 10 içeriği Spam kayıtlarını içermez."
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:85
+msgid "Next"
+msgstr "Sonraki"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:87
+msgid "Previous"
+msgstr "Önceki"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:120
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:124
+msgid "It is necessary to specify the"
+msgstr "Şunları tanımlamak gereklidir"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:120
+msgid "number of pages"
+msgstr "sayfa sayısı"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:124
+msgid "limit of items"
+msgstr "nesne limiti"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:124
+msgid "to show per page"
+msgstr "sayfa başına gösterilecek"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:209
+msgid "Pages"
+msgstr "Sayfa"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:630
+msgid "No visitor activity"
+msgstr "Ziyaretçi aktivitesi yok"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:782
+msgid "Last 24 Hours"
+msgstr "Son 24 Saat"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:788
+msgid "Last 7 Days"
+msgstr "Son 7 Gün"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:794
+msgid "Last Month"
+msgstr "Son Ay"
+
+#: /home/m1k/Desktop/wassup_translation/trunk/lib/main.php:800
+msgid "Last Year"
+msgstr "Son Yıl"
+
