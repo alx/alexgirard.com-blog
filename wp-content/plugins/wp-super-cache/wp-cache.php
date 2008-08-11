@@ -3,7 +3,7 @@
 Plugin Name: WP Super Cache
 Plugin URI: http://ocaoimh.ie/wp-super-cache/
 Description: Very fast caching module for WordPress. Once enabled, you must <a href="options-general.php?page=wp-super-cache/wp-cache.php">enable the cache</a>. Based on WP-Cache by <a href="http://mnm.uib.es/gallir/">Ricardo Galli Granada</a>.
-Version: 0.6.5
+Version: 0.6.6
 Author: Donncha O Caoimh
 Author URI: http://ocaoimh.ie/
 */
@@ -25,7 +25,13 @@ Author URI: http://ocaoimh.ie/
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-$wp_cache_config_file = ABSPATH . 'wp-content/wp-cache-config.php';
+// Pre-2.6 compatibility
+if( !defined('WP_CONTENT_URL') )
+	define( 'WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
+if( !defined('WP_CONTENT_DIR') )
+	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
+
+$wp_cache_config_file = WP_CONTENT_DIR . '/wp-cache-config.php';
 
 if( !@include($wp_cache_config_file) ) {
 	get_wpcachehome();
@@ -36,7 +42,7 @@ if( !@include($wp_cache_config_file) ) {
 }
 
 $wp_cache_config_file_sample = WPCACHEHOME . 'wp-cache-config-sample.php';
-$wp_cache_link = ABSPATH . 'wp-content/advanced-cache.php';
+$wp_cache_link = WP_CONTENT_DIR . '/advanced-cache.php';
 $wp_cache_file = WPCACHEHOME . 'wp-cache-phase1.php';
 
 include(WPCACHEHOME . 'wp-cache-base.php');
@@ -48,7 +54,7 @@ function get_wpcachehome() {
 		} elseif( is_file( dirname(__FILE__) . '/wp-super-cache/wp-cache-config-sample.php' ) ) {
 			define( 'WPCACHEHOME', dirname(__FILE__) . '/wp-super-cache/' );
 		} else {
-			die( 'Please create wp-content/wp-cache-config.php from wp-super-cache/wp-cache-config-sample.php' );
+			die( 'Please create ' . WP_CONTENT_DIR . '/wp-cache-config.php from wp-super-cache/wp-cache-config-sample.php' );
 		}
 	}
 }
@@ -103,7 +109,7 @@ function toggleLayer( whichLayer ) {
 		?><h3>Warning! PHP safe mode enabled!</h3>
 		<p>You may experience problems running this plugin because SAFE MODE is enabled. <?php
 		if( !ini_get( 'safe_mode_gid' ) ) {
-			?>Your server is set up to check the owner of PHP scripts before allowing them to read and write files.</p><p>You or an administrator may be able to make it work by changing the group owner of the plugin scripts to match that of the web server user. The group owner of the wp-content/cache/ directory must also be changed. See the <a href='http://php.net/features.safe-mode'>safe mode manual page</a> for further details.</p><?php
+			?>Your server is set up to check the owner of PHP scripts before allowing them to read and write files.</p><p>You or an administrator may be able to make it work by changing the group owner of the plugin scripts to match that of the web server user. The group owner of the <?php echo WP_CONTENT_DIR; ?>/cache/ directory must also be changed. See the <a href='http://php.net/features.safe-mode'>safe mode manual page</a> for further details.</p><?php
 		} else {
 			?>You or an administrator must disable this. See the <a href='http://php.net/features.safe-mode'>safe mode manual page</a> for further details. This cannot be disabled in a .htaccess file unfortunately. It must be done in the php.ini config file.</p><?php
 		}
@@ -135,19 +141,24 @@ function toggleLayer( whichLayer ) {
 		define( "SUBMITDISABLED", 'disabled style="color: #aaa" ' );
 		?><h4 style='text-align:center; color: #a00'>Read Only Mode. Configuration cannot be changed. <a href="javascript:toggleLayer('readonlywarning');" title="Why your configuration may not be changed">Why</a></h4>
 		<div id='readonlywarning' style='border: 1px solid #aaa; margin: 2px; padding: 2px; display: none;'>
-		<p>The WP Super Cache configuration file is <code><?php echo ABSPATH ?>wp-content/wp-cache-config.php</code> and cannot be modified. The file wp-content/wp-cache-config.php must be writeable by the webserver to make any changes.<br />
+		<p>The WP Super Cache configuration file is <code><?php echo WP_CONTENT_DIR; ?>/wp-cache-config.php</code> and cannot be modified. The file <?php echo WP_CONTENT_DIR; ?>/wp-cache-config.php must be writeable by the webserver to make any changes.<br />
 		A simple way of doing that is by changing the permissions temporarily using the CHMOD command or through your ftp client. Make sure it's globally writeable and it should be fine.<br />
-		Writeable: <code>chmod 666 wp-content/wp-cache-config.php</code><br />
-		Readonly: <code>chmod 644 wp-content/wp-cache-config.php</code></p>
+		Writeable: <code>chmod 666 <?php echo WP_CONTENT_DIR; ?>/wp-cache-config.php</code><br />
+		Readonly: <code>chmod 644 <?php echo WP_CONTENT_DIR; ?>/wp-cache-config.php</code></p>
 		</div><?php
 	} else {
 		define( "SUBMITDISABLED", ' ' );
 	}
 
-	if( is_writable( ABSPATH . 'wp-content/' ) ) {
-		?><h4 style='text-align:center; color: #a00'>Warning! wp-content is writeable!</h4>
-		<p>You should change the permissions on <?php echo ABSPATH; ?>wp-content/ and make it more restrictive. Use your ftp client, or the following command to fix things:<br /><code>chmod 755 <?php echo ABSPATH; ?>wp-content/</code></p><?php
-
+	// Server could be running as the owner of the wp-content directory.  Therefore, if it's
+	// writable, issue a warning only if the permissions aren't 755.
+	if( is_writable( WP_CONTENT_DIR . '/' ) ) {
+		$wp_content_stat = stat(WP_CONTENT_DIR . '/');
+		$wp_content_mode = ($wp_content_stat['mode'] & 0777);
+		if( $wp_content_mode != 0755 ) {
+			?><h4 style='text-align:center; color: #a00'>Warning! <?php echo WP_CONTENT_DIR; ?> is writeable!</h4>
+			<p>You should change the permissions on <?php echo WP_CONTENT_DIR; ?> and make it more restrictive. Use your ftp client, or the following command to fix things:<br /><code>chmod 755 <?php echo WP_CONTENT_DIR; ?>/</code></p><?php
+		}
 	}
 
 	if ( $valid_nonce ) {
@@ -187,7 +198,7 @@ function toggleLayer( whichLayer ) {
 	?>
 	<label><input type='radio' name='wp_cache_status' value='all' <?php if( $cache_enabled == true && $super_cache_enabled == true ) { echo 'checked=checked'; } ?>> <strong>ON</strong> (WP Cache and Super Cache enabled)</label><br />
 	<label><input type='radio' name='wp_cache_status' value='none' <?php if( $cache_enabled == false ) { echo 'checked=checked'; } ?>> <strong>OFF</strong> (WP Cache and Super Cache disabled)</label><br />
-	<label><input type='radio' name='wp_cache_status' value='wpcache' <?php if( $cache_enabled == true && $super_cache_enabled == false ) { echo 'checked=checked'; } ?>> <strong>HALF ON</strong> (Super Cache Disabled)</label><br />
+	<label><input type='radio' name='wp_cache_status' value='wpcache' <?php if( $cache_enabled == true && $super_cache_enabled == false ) { echo 'checked=checked'; } ?>> <strong>HALF ON</strong> (Super Cache Disabled, only legacy WP-Cache caching.)</label><br />
 	<p><label><input type='checkbox' name='wp_cache_hello_world' <?php if( $wp_cache_hello_world ) echo "checked"; ?> value='1'> Proudly tell the world your server is Digg proof! (places a message in your blog's footer)</label></p>
 	<?php
 	echo "<div class='submit'><input " . SUBMITDISABLED . "type='submit' value='Update Status &raquo;' /></div>";
@@ -217,8 +228,10 @@ function toggleLayer( whichLayer ) {
 	<fieldset style='border: 1px solid #aaa' class="options"> 
 	<legend>Mod Rewrite Rules</legend><?php
 	$home_path = get_home_path();
-	$home_root = parse_url(get_option('home'));
+	$home_root = parse_url(get_bloginfo('url'));
 	$home_root = trailingslashit($home_root['path']);
+	$inst_root = parse_url(get_bloginfo('wpurl'));
+	$inst_root = trailingslashit($inst_root['path']);
 	$wprules = implode( "\n", extract_from_markers( $home_path.'.htaccess', 'WordPress' ) );
 	$wprules = str_replace( "RewriteEngine On\n", '', $wprules );
 	$wprules = str_replace( "RewriteBase $home_root\n", '', $wprules );
@@ -245,23 +258,25 @@ function toggleLayer( whichLayer ) {
 	$rules .= "AddDefaultCharset {$charset}\n";
 	$rules .= "RewriteCond %{REQUEST_METHOD} !=POST\n";
 	$rules .= "RewriteCond %{QUERY_STRING} !.*s=.*\n";
+	$rules .= "RewriteCond %{QUERY_STRING} !.*p=.*\n";
 	$rules .= "RewriteCond %{QUERY_STRING} !.*attachment_id=.*\n";
 	$rules .= "RewriteCond %{QUERY_STRING} !.*wp-subscription-manager=.*\n";
 	$rules .= "RewriteCond %{HTTP_COOKIE} !^.*(comment_author_|wordpress|wp-postpass_).*$\n";
 	$rules .= "RewriteCond %{HTTP:Accept-Encoding} gzip\n";
-	$rules .= "RewriteCond %{DOCUMENT_ROOT}{$home_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html.gz -f\n";
-	$rules .= "RewriteRule ^(.*) {$home_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html.gz [L]\n\n";
+	$rules .= "RewriteCond %{DOCUMENT_ROOT}{$inst_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html.gz -f\n";
+	$rules .= "RewriteRule ^(.*) {$inst_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html.gz [L]\n\n";
 
 	$rules .= "RewriteCond %{REQUEST_METHOD} !=POST\n";
 	$rules .= "RewriteCond %{QUERY_STRING} !.*s=.*\n";
+	$rules .= "RewriteCond %{QUERY_STRING} !.*p=.*\n";
 	$rules .= "RewriteCond %{QUERY_STRING} !.*attachment_id=.*\n";
 	$rules .= "RewriteCond %{QUERY_STRING} !.*wp-subscription-manager=.*\n";
 	$rules .= "RewriteCond %{HTTP_COOKIE} !^.*(comment_author_|wordpress|wp-postpass_).*$\n";
-	$rules .= "RewriteCond %{DOCUMENT_ROOT}{$home_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html -f\n";
-	$rules .= "RewriteRule ^(.*) {$home_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html [L]\n";
+	$rules .= "RewriteCond %{DOCUMENT_ROOT}{$inst_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html -f\n";
+	$rules .= "RewriteRule ^(.*) {$inst_root}wp-content/cache/supercache/%{HTTP_HOST}{$home_root}$1/index.html [L]\n";
 	$rules .= "</IfModule>\n";
 	if( $dohtaccess && !$_POST[ 'updatehtaccess' ] ) {
-		echo "<p>In order to serve static html files your server must have the correct mod_rewrite rules added to a file called <code>" . ABSPATH . ".htaccess</code><br /> This can be done automatically by clicking the <em>'Update mod_rewrite rules &raquo;'</em> button or you can edit the file yourself and add the following rules. Make sure they appear before any existing WordPress rules.";
+		echo "<p>In order to serve static html files your server must have the correct mod_rewrite rules added to a file called <code> {$home_path}.htaccess</code><br /> This can be done automatically by clicking the <em>'Update mod_rewrite rules &raquo;'</em> button or you can edit the file yourself and add the following rules. Make sure they appear before any existing WordPress rules.";
 		echo "<pre>" . wp_specialchars( $rules ) . "</pre></p>";
 		echo '<form name="updatehtaccess" action="'. $_SERVER["REQUEST_URI"] . '" method="post">';
 		echo '<input type="hidden" name="updatehtaccess" value="1" />';
@@ -272,15 +287,15 @@ function toggleLayer( whichLayer ) {
 		wpsc_remove_marker( $home_path.'.htaccess', 'WordPress' ); // remove original WP rules so SuperCache rules go on top
 		if( insert_with_markers( $home_path.'.htaccess', 'WPSuperCache', explode( "\n", $rules ) ) && insert_with_markers( $home_path.'.htaccess', 'WordPress', explode( "\n", $wprules ) ) ) {
 			echo "<h4>Mod Rewrite rules updated!</h4>";
-			echo "<p><strong>" . ABSPATH . ".htaccess has been updated with the necessary mod_rewrite rules. Please verify they are correct. They should look like this:</strong></p>\n";
+			echo "<p><strong>{$home_path}.htaccess has been updated with the necessary mod_rewrite rules. Please verify they are correct. They should look like this:</strong></p>\n";
 		} else {
 			echo "<h4>Mod Rewrite rules must be updated!</h4>";
-			echo "<p><strong> Your " . ABSPATH . ".htaccess is not writable by the webserver and must be updated with the necessary mod_rewrite rules. The new rules go above the regular WordPress rules as shown in the code below:</strong></p>\n";
+			echo "<p><strong> Your {$home_path}.htaccess is not writable by the webserver and must be updated with the necessary mod_rewrite rules. The new rules go above the regular WordPress rules as shown in the code below:</strong></p>\n";
 		}
 		echo "<p><pre>" . wp_specialchars( $rules ) . "</pre></p>\n";
 	} else {
 		?>
-		<p>WP Super Cache has modified your <?php echo ABSPATH ?>.htaccess file. Click the following link to see the lines added. If you have upgraded the plugin make sure these rules match. <a href="javascript:toggleLayer('rewriterules');" title="See your mod_rewrite rules">View mod_rewrite rules</a>
+		<p>WP Super Cache has modified your <?php echo $home_path ?>.htaccess file. Click the following link to see the lines added. If you have upgraded the plugin make sure these rules match. <a href="javascript:toggleLayer('rewriterules');" title="See your mod_rewrite rules">View mod_rewrite rules</a>
 		<div id='rewriterules' style='display: none;'>
 		<?php echo "<p><pre>" . wp_specialchars( $rules ) . "</pre></p>\n"; ?>
 		</div>
@@ -517,7 +532,7 @@ function wp_cache_edit_max_time () {
 	global $super_cache_max_time, $cache_max_time, $wp_cache_config_file, $valid_nonce, $cache_enabled, $super_cache_enabled, $wp_cache_gc;
 
 	if( !isset( $super_cache_max_time ) )
-		$super_cache_max_time = 21600;
+		$super_cache_max_time = 3600;
 
 	if(isset($_POST['wp_max_time']) && $valid_nonce) {
 		$max_time = (int)$_POST['wp_max_time'];
@@ -786,7 +801,7 @@ function wp_cache_verify_config_file() {
 			}
 		}
 	} elseif( !is_writable($dir)) {
-		echo "<b>Error:</b> Configuration file missing and wp-content directory (<b>$dir</b>) is not writable by the Web server.<br />Check its permissions.";
+		echo "<b>Error:</b> Configuration file missing and " . WP_CONTENT_DIR . "  directory (<b>$dir</b>) is not writable by the Web server.<br />Check its permissions.";
 		return false;
 	}
 
@@ -842,7 +857,11 @@ function wp_cache_check_link() {
 
 function wp_cache_check_global_config() {
 
-	$global = ABSPATH . 'wp-config.php';
+	if ( file_exists( ABSPATH . 'wp-config.php') ) {
+		$global = ABSPATH . 'wp-config.php';
+	} else {
+		$global = dirname(ABSPATH) . '/wp-config.php';
+	}
 
 	$lines = file($global);
 	foreach($lines as $line) {
@@ -939,7 +958,7 @@ function wp_cache_files() {
 
 		if (is_dir($supercachedir)) {
 			$entries = glob($supercachedir. '/*');
-			foreach ($entries as $entry) {
+			foreach( (array) $entries as $entry) {
 				if ($entry != '.' && $entry != '..') {
 					$sizes = wpsc_dirsize( $entry, $sizes );
 				}
@@ -1101,5 +1120,14 @@ if( isset( $wp_cache_hello_world ) && $wp_cache_hello_world )
 
 if( get_option( 'gzipcompression' ) )
 	update_option( 'gzipcompression', 0 );
+
+// Catch 404 requests. Themes that use query_posts() destroy $wp_query->is_404
+function wp_cache_catch_404() {
+	global $wp_cache_404;
+	$wp_cache_404 = false;
+	if( is_404() )
+		$wp_cache_404 = true;
+}
+add_action( 'template_redirect', 'wp_cache_catch_404' );
 
 ?>

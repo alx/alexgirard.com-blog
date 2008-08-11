@@ -124,12 +124,13 @@ function wp_cache_ob_callback($buffer) {
 	global $cache_path, $cache_filename, $meta_file, $wp_start_time, $supercachedir;
 	global $new_cache, $wp_cache_meta_object, $file_expired, $blog_id, $cache_compression;
 	global $wp_cache_gzip_encoding, $super_cache_enabled, $cached_direct_pages;
+	global $wp_cache_404;
 
 	$new_cache = true;
 
 	/* Mode paranoic, check for closing tags 
 	 * we avoid caching incomplete files */
-	if (is_404()) {
+	if( $wp_cache_404 ) {
 		$new_cache = false;
 		$buffer .= "\n<!-- Page not cached by WP Super Cache. 404. -->\n";
 	}
@@ -146,8 +147,11 @@ function wp_cache_ob_callback($buffer) {
 	$duration = sprintf("%0.3f", $duration);
 	$buffer .= "\n<!-- Dynamic Page Served (once) in $duration seconds -->\n";
 
-	if( !wp_cache_writers_entry() )
-		return false;
+	if( !wp_cache_writers_entry() ) {
+		$buffer .= "\n<!-- Page not cached by WP Super Cache. Could not get mutex lock. -->\n";
+		return $buffer;
+	}
+
 	$mtime = @filemtime($cache_path . $cache_filename);
 	/* Return if:
 		the file didn't exist before but it does exist now (another connection created)
