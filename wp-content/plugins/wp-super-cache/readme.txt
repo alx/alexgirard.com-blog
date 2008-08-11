@@ -2,7 +2,7 @@
 Contributors: donncha
 Tags: performance,caching,wp-cache
 Tested up to: 2.6
-Stable tag: 0.6.5
+Stable tag: 0.6.6
 Requires at least: 2.2
 
 A very fast caching engine for WordPress that produces static html files.
@@ -40,6 +40,7 @@ The [changelog](http://svn.wp-plugins.org/wp-super-cache/trunk/Changelog.txt) is
 	
 	`RewriteCond %{REQUEST_METHOD} !=POST`
 	`RewriteCond %{QUERY_STRING} !.*s=.*`
+	`RewriteCond %{QUERY_STRING} !.*p=.*`
 	`RewriteCond %{QUERY_STRING} !.*attachment_id=.*`
 	`RewriteCond %{QUERY_STRING} !.*wp-subscription-manager=.*`
 	`RewriteCond %{HTTP_COOKIE} !^.*(comment_author_|wordpress|wp-postpass_).*$`
@@ -49,6 +50,7 @@ The [changelog](http://svn.wp-plugins.org/wp-super-cache/trunk/Changelog.txt) is
 	
 	`RewriteCond %{REQUEST_METHOD} !=POST`
 	`RewriteCond %{QUERY_STRING} !.*s=.*`
+	`RewriteCond %{QUERY_STRING} !.*p=.*`
 	`RewriteCond %{QUERY_STRING} !.*wp-subscription-manager=.*`
 	`RewriteCond %{QUERY_STRING} !.*attachment_id=.*`
 	`RewriteCond %{HTTP_COOKIE} !^.*(comment_author_|wordpress|wp-postpass_).*$`
@@ -76,7 +78,7 @@ Comments will show as soon as they are moderated, depending on the comment polic
 
 = Why are there two expiry times? =
 
-WP Super Cache stores it's cached files in a different way to WP Cache that lets it work better even when there are very many cached files. That is why the Super Cache expiry time is so much longer by default.
+WP Super Cache stores it's cached files in a different way to WP Cache that lets it work better even when there are very many cached files. That is why the Super Cache expiry time is so much longer by default. If your site starts to slow down and there are too many cached files reduce these times and change the garbage collection number too.
 
 = Will the Super Cache compression slow down my server? =
 
@@ -112,6 +114,7 @@ If you can't do that, then copy the file. That will work too.
 10.  The plugin does not work very well when PHP's safe mode is active. This must be disabled by your administrator.
 11. If pages are randomly super cached and sometimes not, your blog can probably be viewed with and without the "www" prefix on the URL. You should choose one way and install the [Enforce www preference](http://txfx.net/code/wordpress/enforce-www-preference/) plugin.
 12. Private Server users at Dreamhost should edit wp-content/wp-cache-config.php and set the cache dir to "/tmp/" if they are getting errors about increasing CPU usage. See this [discussion](http://wordpress.org/support/topic/145895?replies=42) for more.
+13. sem_acquire() errors such as "failed to acquire key 0x152b: Permission denied in..." are a sign that you must use file locking. Edit wp-content/wp-cache-config.php and uncomment "$use_flock = true" or  set $sem_id to a different value.
 
 == Custom Caching ==
 It is now possible to hook into the caching process using the add_cacheacton() function.
