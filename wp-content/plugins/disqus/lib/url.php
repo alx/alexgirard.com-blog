@@ -101,8 +101,8 @@ function _fsockopen_urlopen($url, $postdata, &$response, $file_name, $file_field
 
 	// Determine if we need to include the port in the Host header or not.
 	if(($url_pieces['port'] == 80  && $url_pieces['scheme'] == 'http') ||
-	   ($url_pieces['port'] == 443 && $url_pieces['scheme'] == 'https')) {
-	    $host = $url_pieces['host'];
+		($url_pieces['port'] == 443 && $url_pieces['scheme'] == 'https')) {
+		$host = $url_pieces['host'];
 	} else {
 		$host = $url_pieces['host'] . ':' . $url_pieces['port'];
 	}
@@ -236,6 +236,17 @@ function urlopen($url, $postdata=false, $file=false) {
 
 	// Try curl, fsockopen, fopen + stream (PHP5 only), exec wget
 	if(function_exists('curl_init')) {
+		if (!function_exists('curl_setopt_array')) {
+			function curl_setopt_array(&$ch, $curl_options)
+			{
+				foreach ($curl_options as $option => $value) {
+					if (!curl_setopt($ch, $option, $value)) {
+						return false;
+					} 
+				}
+				return true;
+			}
+		}
 		_curl_urlopen($url, $postdata, $response, $file_name, $file_field);
 	} else if(ini_get('allow_url_fopen') && function_exists('stream_get_contents')) {
 		_fopen_urlopen($url, $postdata, $response, $file_name, $file_field);

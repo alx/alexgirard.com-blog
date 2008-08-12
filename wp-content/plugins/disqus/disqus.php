@@ -4,7 +4,7 @@ Plugin Name: DISQUS Comment System
 Plugin URI: http://disqus.com/
 Description: The DISQUS comment system replaces your WordPress comment system with your comments hosted and powered by DISQUS. Head over to the Comments admin page to set up your DISQUS Comment System.
 Author: DISQUS.com <team@disqus.com>
-Version: 2.0-2477
+Version: 2.0-2492
 Author URI: http://disqus.com/
 
 */
@@ -319,8 +319,8 @@ function dsq_warning() {
 		dsq_manage_dialog('You must <a href="edit-comments.php?page=disqus">configure the plugin</a> to enable the DISQUS comment system.', true);
 	}
 
-	if ( dsq_legacy_mode() ) {
-		dsq_manage_dialog('DISQUS is running in legacy mode.  (<a href="' . DISQUS_URL . '/docs/wordpress/">What does this mean?</a>)');
+	if ( dsq_legacy_mode() && $_GET['page'] == 'disqus' ) {
+		dsq_manage_dialog('DISQUS is running in legacy mode.  (<a href="edit-comments.php?page=disqus">Click here to configure</a>)');
 	}
 }
 

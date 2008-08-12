@@ -1,5 +1,5 @@
 Disqus WordPress Plugin
-Version 2.0-2477 (August 12, 2008)
+Version 2.0-2492 (August 12, 2008)
 http://disqus.com/
 
 * Installation
