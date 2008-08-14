@@ -1,40 +1,6 @@
 <?php
 
 /**
- * check_input() - Checks input is of correct type
- * 
- * Always returns true when WP_DEBUG is true, to allow for easier debugging
- * in the development environment while handling erroneous input more
- * robustly in the production environment.
- * @see http://uk3.php.net/manual/en/function.gettype.php
- * @since 2.1
- * @param mixed $input
- * @param string $type
- * @param string $name
- * @return boolean
- *
- */
-function check_input($input, $type, $name = '') {
-	if ( WP_DEBUG === true )
-		return true;
-
-	if ( $type == 'object' && strlen($name) > 0 )
-		return is_a($input, $name);
-	else
-		return call_user_func("is_$type", $input);
-}
-
-/**
- * detectWPMU() - Detects whether WordPress Multi-User is in use.
- * 
- * @since 1.4
- * @return boolean
- */
-function detectWPMU() {
-	return function_exists('is_site_admin');
-}
-
-/**
  * detectWPMUadmin() - Detect whether the current user is a WPMU site administrator.
  * 
  * @since 2.0
@@ -69,72 +35,13 @@ function can_get_remote() {
  * @return boolean
  */
 function cache_is_writable($file = false) {
-	if($file)
+	if ( $file )
 		$cachefile = TARSKICACHE . '/' . $file;
 	
-	if(is_writable($cachefile) || (is_writable(TARSKICACHE) && !file_exists($cachefile)))
-		return true;
-}
-
-/**
- * version_to_integer() - Turns Tarski version numbers into integers.
- * 
- * @since 2.0.3
- * @param string $version
- * @return integer
- */
-function version_to_integer($version) {
-	// Remove all non-numeric characters
-	$version = preg_replace('/\D/', '', $version);
-	
-	if($version && strlen($version) >= 1) {
-		// Make the string exactly three characters (numerals) long
-		if(strlen($version) < 2) {
-			$version_int = $version . '00';
-		} elseif(strlen($version) < 3) {
-			$version_int = $version . '0';
-		} elseif(strlen($version) == 3) {
-			$version_int = $version;
-		} elseif(strlen($version) > 3) {
-			$version_int = substr($version, 0, 3);
-		}
-		
-		// Return an integer
-		return (int) $version_int;
-	}
-}
-
-/**
- * version_newer_than() - Returns true if current version is greater than given version.
- *
- * @since 2.0.3
- * @param mixed $version
- * @return boolean
- */
-function version_newer_than($version) {
-	$version = version_to_integer($version);
-	$current = version_to_integer(theme_version('current'));
-	
-	if($version && $current) {
-		return (bool) ($current > $version);
-	}
-}
-
-/**
- * is_valid_tarski_style() - Checks whether a given file name is a valid Tarski stylesheet name.
- * 
- * It must be a valid CSS identifier, followed by the .css file extension,
- * and it cannot have a name that is already taken by Tarski's CSS namepsace.
- * @since 2.0
- * @param string $file
- * @return boolean
- */
-function is_valid_tarski_style($file) {
-	return (bool) (
-		!preg_match('/^\.+$/', $file)
-		&& preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file)
-		&& !preg_match('/^janus.css$|^centre.css$|^rtl.css$/', $file)
-	);
+	if ( file_exists($cachefile) )
+		return is_writable($cachefile);
+	else
+		return is_writable(TARSKICACHE);
 }
 
 /**
@@ -166,9 +73,8 @@ function ready_to_delete_options($del_time) {
  */
 function tarski_upgrade_needed() {
 	if ( get_option('tarski_options') ) {
-		$version = get_tarski_option('installed');
-		$current = theme_version('current');
-		return (bool) empty($version) || (version_to_integer($version) < version_to_integer($current));
+		$installed = get_tarski_option('installed');
+		return empty($installed) || version_compare($installed, theme_version('current')) === -1;
 	}
 }
 
@@ -185,6 +91,86 @@ function tarski_upgrade_and_flush_options() {
 		$tarski_options = new Options;
 		$tarski_options->tarski_options_get();
 	}
+}
+
+/**
+ * tarski_upgrade_special() - Upgrades Tarski options special cases.
+ * 
+ * @since 2.3
+ * @see tarski_upgrade()
+ * @param object $options
+ * @param object $defaults
+ */
+function tarski_upgrade_special($options, $defaults) {
+	if ( tarski_should_show_authors() )
+		$options->show_authors = true;
+	
+	if ( empty($options->centred_theme) && isset($options->centered_theme) )
+		$options->centred_theme = true;
+	
+	if ( empty($options->show_categories) && isset($options->hide_categories) && ($options->hide_categories == 1) )
+		$options->show_categories = false;
+	
+}
+
+/**
+ * tarski_upgrade_widgets() - Upgrades old Tarski sidebar options to use widgets.
+ * 
+ * @since 2.3
+ * @see tarski_upgrade()
+ * @param object $options
+ * @param object $defaults
+ */
+function tarski_upgrade_widgets($options, $defaults) {
+	$widgets = wp_get_sidebars_widgets(false);
+	$widget_text = get_option('widget_text');
+	
+	// Change sidebar names and initialise new sidebars
+	if ( empty($widgets['sidebar-main']) && !empty($widgets['sidebar-1']) )
+		$widgets['sidebar-main'] = $widgets['sidebar-1'];
+	
+	if ( empty($widgets['footer-sidebar']) && !empty($widgets['sidebar-2']) )
+		$widgets['footer-sidebar'] = $widgets['sidebar-2'];
+	
+	// Main footer widgets
+	if ( empty($widgets['footer-main']) ) {
+		$widgets['footer-main'] = array();
+		
+		// Footer blurb
+		if ( strlen(trim($options->blurb)) ) {
+			$widget_text[] = array( 'title' => '', 'text' => $options->blurb );
+			$wt_num = (int) end(array_keys($widget_text));
+			$widgets['footer-main'][] = "text-$wt_num";
+		}
+		
+		// Recent articles
+		if ( $options->footer_recent )
+			$widgets['footer-main'][] = 'recent-articles';
+	}
+	
+	// Main sidebar
+	if ( empty($widgets['sidebar-main']) && $options->sidebar_type == 'tarski' ) {
+		$widgets['sidebar-main'] = array();
+	
+		// Custom text -> text widget
+		if( strlen(trim($options->sidebar_custom)) ) {
+			$widget_text[] = array( 'title' => '', 'text' => $options->sidebar_custom );
+			$wt_num = (int) end(array_keys($widget_text));
+			$widgets['sidebar-main'][] = "text-$wt_num";
+		}
+	
+		// Pages list -> pages widget
+		if($options->sidebar_pages)
+			$widgets['sidebar-main'][] = 'pages';
+	
+		// Links list -> links widget
+		if($options->sidebar_links)
+			$widgets['sidebar-main'][] = 'links';
+	}
+	
+	// Update options
+	update_option('widget_text', $widget_text);
+	wp_set_sidebars_widgets($widgets);	
 }
 
 /**
@@ -205,95 +191,14 @@ function tarski_upgrade() {
 	$defaults = new Options;
 	$defaults->tarski_options_defaults();
 
-	// Handle special cases first
-	
 	// Update the options version so we don't run this code more than once
-	$old_version = $options->installed;
 	$options->installed = theme_version('current');
 	
-	if (version_to_integer($old_version) < 210) {
-		// If they had hidden the sidebar previously for non-index pages, preserve that setting
-		if (
-			empty($options->sidebar_pp_type)
-			&& isset($options->sidebar_onlyhome)
-			&& $options->sidebar_onlyhome == 1
-		) {
-			$options->sidebar_pp_type = 'none';
-		}
-	
-		// If there's more than one author, show authors
-		if(tarski_should_show_authors()) {
-			$options->show_authors = true;
-		}
-	
-		// If categories are hidden, respect that option
-		if (
-			empty($options->show_categories)
-			&& isset($options->hide_categories)
-			&& ($options->hide_categories == 1)
-		) {
-			$options->show_categories = false;
-		}
-	
-		// Change American English to British English, sorry Chris
-		if(empty($options->centred_theme) && isset($options->centered_theme)) {
-			$options->centred_theme = true;
-		}
-	
-		// Upgrade old display options to use widgets instead
-	
-		// Get current widgets settings
-		$widgets = wp_get_sidebars_widgets();
-		$widget_text = get_option('widget_text');
-	
-		// Change sidebar names and initialise new sidebars
-		$widgets['sidebar-main'] = $widgets['sidebar-1'];
-		$widgets['footer-sidebar'] = $widgets['sidebar-2'];
-		$widgets['footer-main'] = array();
-	
-		// Footer blurb
-		if ( strlen(trim($options->blurb)) ) {
-			$widget_text[] = array( 'title' => '', 'text' => $options->blurb );
-			$wt_num = (int) end(array_keys($widget_text));
-			$widgets['footer-main'][] = "text-$wt_num";
-		}
-	
-		// Recent articles
-		if ( $options->footer_recent ) {
-			$widgets['footer-main'][] = 'recent-articles';
-		}
-	
-		// Footer sidebar default
-		if ( empty($widgets['footer-sidebar']) ) {
-			$widgets['footer-sidebar'] = array('search');
-		}
+	// Handle special cases first
+	tarski_upgrade_special($options, $defaults);
 		
-		// Main sidebar
-		if ( $options->sidebar_type == 'tarski' ) {
-			if ( empty($widgets['sidebar-main']) )
-				$widgets['sidebar-main'] = array();
-		
-			// Custom text -> text widget
-			if( strlen(trim($options->sidebar_custom)) ) {
-				$widget_text[] = array( 'title' => '', 'text' => $options->sidebar_custom );
-				$wt_num = (int) end(array_keys($widget_text));
-				$widgets['sidebar-main'][] = "text-$wt_num";
-			}
-		
-			// Pages list -> pages widget
-			if($options->sidebar_pages) {
-				$widgets['sidebar-main'][] = 'pages';
-			}
-		
-			// Links list -> links widget
-			if($options->sidebar_links) {
-				$widgets['sidebar-main'][] = 'links';
-			}
-		}
-		
-		// Unset defunct values
-		unset($widgets['sidebar-1'], $widgets['sidebar-2']);
-	}
+	// Upgrade old display options to use widgets instead
+	tarski_upgrade_widgets($options, $defaults);
 	
 	// Conform our options to the expected values, types, and defaults
 	foreach($options as $name => $value) {
@@ -311,20 +216,17 @@ function tarski_upgrade() {
 			$options->$name = array($options->$name);
 		}
 	}
-
-	// Save our upgraded options
-	if (version_to_integer($old_version) < 210) {
-		update_option('widget_text', $widget_text);
-		wp_set_sidebars_widgets($widgets);
-	}
 	
-	update_option('tarski_options', serialize($options));
+	// Save our upgraded options
+	update_option('tarski_options', $options);
 }
 
 /**
  * tarski_messages() - Adds messages about Tarski to the WordPress admin panel.
  * 
  * @since 2.1
+ * @hook filter tarski_messages
+ * Filter the messages Tarski prints to the WordPress admin panel.
  */
 function tarski_messages() {
 	$messages = apply_filters('tarski_messages', array());
@@ -349,11 +251,13 @@ function tarski_addmenu() {
  * @since 1.0
  */
 function tarski_admin() {
-	save_tarski_options();
-	tarski_update_notifier('options_page');
-	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
-	$tarski_options_link = get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options';
-	include(TARSKIDISPLAY . '/options_page.php');
+	if (current_user_can('edit_themes')) {
+		save_tarski_options();
+		tarski_update_notifier('options_page');
+		$widgets_link = admin_url('widgets.php');
+		$tarski_options_link = admin_url('themes.php?page=tarski-options');
+		include(TARSKIDISPLAY . '/options_page.php');
+	}
 }
 
 /**
@@ -379,7 +283,11 @@ function tarski_admin_header_style() { ?>
  * @since 2.1
 */
 function tarski_admin_style() {
-	echo '<link rel="stylesheet" href="' . get_bloginfo('template_directory'). '/library/css/admin.css" type="text/css" media="all" />';
+	wp_enqueue_style(
+		'tarski_admin',
+		get_bloginfo('template_directory') . '/library/css/admin.css',
+		array(), false, 'screen'
+	);
 }
 
 /**
@@ -388,7 +296,11 @@ function tarski_admin_style() {
  * @since 2.1
 */
 function tarski_inject_styles() {
-	echo '<link rel="stylesheet" href="' . get_bloginfo('template_directory'). '/library/css/options.css" type="text/css" media="screen" />';
+	wp_enqueue_style(
+		'tarski_options',
+		get_bloginfo('template_directory') . '/library/css/options.css',
+		array(), false, 'screen'
+	);
 }
 
 /**
@@ -397,23 +309,24 @@ function tarski_inject_styles() {
  * @since 1.4
 */
 function tarski_inject_scripts() {
-	$js_dir = get_bloginfo('template_directory') . '/library/js';
-	wp_enqueue_script('crir', $js_dir . '/crir.js');
+	$js_dir = get_bloginfo('template_directory') . '/app/js';
+	wp_enqueue_script('page_select', "$js_dir/page_select.js");
+	wp_enqueue_script('crir', "$js_dir/crir.js");
 }
 
 /**
- * tarski_count_authors() - Returns the number of authors on a site.
+ * tarski_count_authors() - Returns the number of authors who have published posts.
  * 
- * This function returns the number of users on a site with a user
- * level of greater than 1, i.e. Authors, Editors and Administrators.
+ * This function returns the number of author ids associated with published posts.
  * @since 2.0.3
  * @global object $wpdb
  * @return integer
  */
 function tarski_count_authors() {
 	global $wpdb;
-	$count_users = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->usermeta WHERE `meta_key` = '" . $wpdb->prefix . "user_level' AND `meta_value` > 1");
-	return (int) $count_users;
+	return count($wpdb->get_col($wpdb->prepare(
+		"SELECT post_author, COUNT(DISTINCT post_author) FROM $wpdb->posts WHERE post_status = 'publish' GROUP BY post_author"
+	), 1));
 }
 
 /**
@@ -423,6 +336,8 @@ function tarski_count_authors() {
  * @see tarski_count_authors()
  * @global object $wpdb
  * @return boolean
+ * @hook filter tarski_show_authors
+ * Allows other components to decide whether or not Tarski should show authors.
  */
 function tarski_should_show_authors() {
 	$show_authors = tarski_count_authors() > 1;
@@ -441,6 +356,100 @@ function tarski_resave_show_authors() {
 	if(get_option('tarski_options')) {
 		update_tarski_option('show_authors', tarski_should_show_authors());
 	}
+}
+
+/**
+ * tarski_navbar_select() - Generates a list of checkboxes for the site's pages.
+ * 
+ * Walks the tree of pages and generates nested ordered lists of pages, with
+ * corresponding checkboxes to allow the selection of pages for the navbar.
+ * @since 2.2
+ * @param array $pages
+ * @param array $selected
+ */
+function tarski_navbar_select($pages) {
+	$nav_pages = explode(',', get_tarski_option('nav_pages'));
+	$collapsed_pages = explode(',', get_tarski_option('collapsed_pages'));
+	$walker = new WalkerPageSelect($nav_pages, $collapsed_pages);
+	$return = '';
+	
+	if ( !empty($pages) ) {	
+		$return = "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
+	}
+	
+	return $return;
+}
+
+/**
+ * tarski_update_notifier() - Performs version checks and outputs the update notifier.
+ * 
+ * Creates a new Version object, checks the latest and current
+ * versions, and lets the user know whether or not their version
+ * of Tarski needs updating. The way it displays varies slightly
+ * between the WordPress Dashboard and the Tarski Options page.
+ * @since 2.0
+ * @param string $location
+ * @return string
+ */
+function tarski_update_notifier($messages) {
+	global $plugin_page;
+	
+	if ( !is_array($messages) )
+		$messages = array();
+	
+	$version = new Version;
+	$version->current_version_number();
+	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
+	
+	// Update checking only performed when remote files can be accessed
+	if ( can_get_remote() ) {
+		
+		// Only performs the update check when notification is enabled
+		if ( get_tarski_option('update_notification') ) {
+			$version->latest_version_number();
+			$version->latest_version_link();
+			$version->version_status();
+			
+			if ( $version->status == 'older' ) {
+				$messages[] = sprintf(
+					__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
+					"<strong>$version->latest</strong>",
+					'<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>',
+					"<strong>$version->current</strong>"
+				);
+			} elseif ( $plugin_page == 'tarski-options' ) {
+				switch($version->status) {
+					case 'current':
+						$messages[] = sprintf(
+							__('Your version of Tarski (%s) is up to date.','tarski'),
+							"<strong>$version->current</strong>"
+						);
+					break;
+					case 'newer':
+						$messages[] = sprintf(
+							__('You appear to be running a development version of Tarski (%1$s). Please ensure you %2$s.','tarski'),
+							"<strong>$version->current</strong>",
+							"<a href=\"$svn_link\">" . __('stay updated','tarski') . '</a>'
+						);
+					break;
+					case 'no_connection':
+					case 'error':
+						$messages[] = sprintf(
+							__('No connection to update server. Your installed version is %s.','tarski'),
+							"<strong>$version->current</strong>"
+						);
+					break;
+				}
+			}
+		} elseif ( $plugin_page == 'tarski-options' ) {
+			$messages[] = sprintf(
+				__('Update notification for Tarski is disabled. Your installed version is %s.','tarski'),
+				"<strong>$version->current</strong>"
+			);
+		}
+	}
+	
+	return $messages;
 }
 
 ?>

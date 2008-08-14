@@ -98,22 +98,6 @@ function tarski_posts_nav_link() {
 }
 
 /**
- * tarski_date() - Tweaked WordPress date function that shows up on every post.
- * 
- * The WP function the_date only shows up on the first post
- * of that day. This one displays on every post, regardless
- * of how many posts are made that day.
- * @since 1.2.2
- * @global object $post
- * @return string
- */
-function tarski_date() {
-	global $post;
-	$date = mysql2date(get_option('date_format'), $post->post_date);
-	return apply_filters('tarski_date', $date);
-}
-
-/**
  * tarski_post_categories_link() - Outputs post categories
  * 
  * Categories list is nicely wrapped for potential DOM interactions
@@ -171,6 +155,8 @@ function tarski_asides_permalink_text() {
  * Makes the comment date and time output more translateable.
  * @since 2.0
  * @return string
+ * @hook filter tarski_comment_datetime
+ * Filters the date and time printed with a comment.
  */
 function tarski_comment_datetime() {
 	$datetime = sprintf(
@@ -215,7 +201,10 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
 	$url = get_comment_author_url();
 	$author_alt = sprintf( __('%s&#8217;s avatar'), get_comment_author() );
 	$avatar = preg_replace("/height='[\d]+' width='[\d]+'/", '', $avatar);
-	$avatar = preg_replace("/'/", '"', $avatar);
+	
+	if ( !is_admin() )
+		$avatar = preg_replace("/'/", '"', $avatar);
+	
 	$avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);
 	
 	return $avatar;
@@ -229,7 +218,12 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
  * @return string
  */
 function tarski_avatar() {
-	$avatar = get_avatar(get_comment_author_email(), '50', apply_filters('tarski_avatar', get_bloginfo('template_directory') . '/images/avatar.png'));
+	if ( get_option('avatar_default') == '' )
+		$default = get_bloginfo('template_directory') . '/images/avatar.png';
+	else
+		$default = '';
+	
+	$avatar = get_avatar(get_comment_author_email(), '50', $default);
 	$url = get_comment_author_url();
 	
 	if ( empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url) ) {
@@ -240,6 +234,19 @@ function tarski_avatar() {
 }
 
 /**
+ * tarski_default_avatar() - Make Tarski avatar selectable.
+ * 
+ * Adds the Tarski avatar to the Discussion options page, allowing it to be selected
+ * but also allowing users to choose other avatars.
+ * @return string
+ */
+function tarski_default_avatar($avatar_defaults) {
+	$tarski_avatar = get_bloginfo('template_directory') . '/images/avatar.png';
+	$avatar_defaults[$tarski_avatar] = 'Tarski';
+	return $avatar_defaults;
+}
+
+/**
  * tarski_comment_author_link() - Returns a comment author's name, wrapped in a link if present.
  * 
  * It also includes hCard microformat markup.
@@ -247,6 +254,10 @@ function tarski_avatar() {
  * @since 2.0
  * @global object $comment
  * @return string
+ * @hook filter get_comment_author_link
+ * Native WordPress filter on comment author links.
+ * @hook filter tarski_comment_author_link
+ * Tarski-specific filter on comment author links.
  */
 function tarski_comment_author_link() {
 	global $comment;
@@ -272,67 +283,12 @@ function tarski_comment_author_link() {
 }
 
 /**
- * tarski_excerpt() - Excerpts a la Tarski.
- * 
- * Code shamelessly borrowed from Kaf Oseo's 'the_excerpt Reloaded' plugin.
- * @link http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
- * @since 1.2.1
- * @param $return boolean
- * @param string $excerpt_length
- * @return string
- */
-function tarski_excerpt($return = false, $excerpt_length = 35) {
-	global $post;
-
-	if(!empty($post->post_password)) { // if there's a password
-		if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) { // and it doesn't match cookie
-			$output = get_the_password_form();
-		}
-		if($return) {
-			return $output;
-		} else {
-			echo $output;
-			return;
-		}
-	}
-	
-	if(!($text = $post->post_excerpt))
-		$text = $post->post_content;
-
-	if($excerpt_length < 0) {
-		$output = $text;
-	} else {
-		str_replace('<!--more-->', '', $text);
-		$text = explode(' ', $text);
-		if(count($text) > $excerpt_length) {
-			$l = $excerpt_length;
-			$ellipsis = '&hellip;';
-		} else {
-			$l = count($text);
-			$ellipsis = false;
-		}
-		for ($i = 0; $i < $l; $i++)
-			$output .= $text[$i] . ' ';
-	}
-
-	$output = rtrim($output, " \n\t\r\0\x0B");
-	$output = strip_tags($output);
-	$output .= $ellipsis;
-	$output = apply_filters('get_the_excerpt', $output);
-	$output = apply_filters('the_excerpt', $output);
-	$output = apply_filters('tarski_excerpt', $output);
-	
-	if($return)
-		return $output;
-	else
-		echo $output;
-}
-
-/**
  * tarski_404_content() - Outputs default text for 404 error pages.
  *
  * @since 1.5
  * @return string
+ * @hook filter th_404_content
+ * Allows users to change their 404 page messages via a plugin.
  */
 function tarski_404_content() {
 	$content = sprintf(

@@ -22,6 +22,7 @@ class Options {
 	var $display_title;
 	var $display_tagline;
 	var $nav_pages;
+	var $collapsed_pages;
 	var $home_link_name;
 	var $nav_extlinkcat;
 	var $style;
@@ -46,6 +47,7 @@ class Options {
 		$this->display_title = true;
 		$this->display_tagline = true;
 		$this->nav_pages = false;
+		$this->collapsed_pages = '';
 		$this->home_link_name = __('Home','tarski');
 		$this->nav_extlinkcat = 0;
 		$this->style = false;
@@ -55,8 +57,8 @@ class Options {
 		$this->swap_title_order = false;
 		$this->tags_everywhere = false;
 		$this->show_categories = true;
-		$this->show_authors = tarski_should_show_authors();
-		$this->use_pages = false;
+		$this->show_authors = true;
+		$this->use_pages = true;
 	}
 	
 	/**
@@ -107,6 +109,13 @@ class Options {
 				$this->nav_pages = false;
 			}
 			
+			$collapsed_pages = $_POST['collapsed_pages'];
+			if(isset($collapsed_pages)) {
+				$this->collapsed_pages = $collapsed_pages;
+			} else {
+				$this->collapsed_pages = '';
+			}
+			
 			$stylefile = $_POST['alternate_style'];
 			if(is_valid_tarski_style($stylefile))
 				$this->style = $stylefile;
@@ -124,7 +133,6 @@ class Options {
 			$this->asidescategory = $_POST['asides_category'];
 			$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 			$this->home_link_name = $_POST['home_link_name'];
-			$this->sidebar_type = $_POST['sidebar_type'];
 			$this->sidebar_pp_type = $_POST['sidebar_pp_type'];			
 			$this->show_authors = tarski_should_show_authors();
 			unset($this->deleted);
@@ -160,7 +168,7 @@ function save_tarski_options() {
 	
 	if(isset($_POST['submit'])) {
 		$tarski_options->tarski_options_update();
-		update_option('tarski_options', serialize($tarski_options));
+		update_option('tarski_options', $tarski_options);
 	}
 	
 	flush_tarski_options();
@@ -210,7 +218,7 @@ function update_tarski_option($option, $value) {
 	else
 		$tarski_options->$option = $value;
 		
-	update_option('tarski_options', serialize($tarski_options));
+	update_option('tarski_options', $tarski_options);
 	flush_tarski_options();
 }
 

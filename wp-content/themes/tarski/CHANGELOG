@@ -1,39 +1,105 @@
 # Changelog
 
-### Version 2.1.4 [&sect](http://tarskitheme.com/2008/07/13/214-release/)
+
+### Version 2.3 [&sect;](http://tarskitheme.com/)
+
+#### New features
+ 
+ * Options page now compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
+ 
+#### Tweaks
+  
+  * Don't serialise the data passed to `update_option` (r763)
+  * Show version cache notice when _file_, not directory, isn't writable (r760)
+  * Clean up `cache_is_writable` function (r759, r761)
+  * Add `js.css` to the list of disallowed custom styles (r755)
+  * Hide the search form label faster (r754)
+  * `multiple_tag_titles` function refactored (r751)
+  * Upgrade functionality refactored (r746)
+  * Author count check only runs when posts are saved or deleted (r745, r748)
+  * Author count checks how many authors have published posts (r744)
+  * `wpdb->prepare()` method used for author count query (r742)
+  * Deprecated `version_to_integer` and `version_newer_than` functions (r739)
+  * Switched to native <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> `version_compare` function (r737)
+  * Options page access granted only to users with `edit_themes` capability (r736)
+  * Stylesheets for the admin section enqueued, not printed (r734)
+ 
+#### Bug fixes
+
+  * Added more checks to upgrade functionality (r746)
+  * Made navbar selector work better in Internet Explorer (r735)
+  * Excluded navbar links category from the links page (r733)
+
+
+### Version 2.2.2 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
 
 #### Bug fixes
+
+  * Replace defunct function reference in Links template (r724)
+
+
+### Version 2.2.1 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
+
+#### Bug fixes
+	
+  * Always show authors if Tarski options haven't been saved (r715)
+
+
+### Version 2.2 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
   
+#### New features
+
+  * Navbar selector: sub-page lists are collapsible (r606)
+  * Navbar selector: sub-pages are listed as such (r599)
+  
+#### Tweaks
+
+  * Better handling of attachments (r697, r698)
+  * Tweaked gallery styling to better fit Tarski (r695)
+  * Add <abbr title="WordPress">WP</abbr> standard alignment classes (r694)
+  * Added inline hooks documentation (r657, r658, r661, r665, r666, r667)
+  * Deprecated `tarski_excerpt` function (r664)
+  * Deprecated `tarski_date` function in favour of a <abbr title="WordPress">WP</abbr> core function (r662)
+  * Removed filter from `implode_proper` function (r660)
+  * Removed functions deprecated two major releases ago (r659)
+  * Removed defunct Tarski search widget (r656)
+  * Paginate index pages by default (r652)
+  * Remove pagination from index pages more elegantly and efficiently (r651)
+  * Replaced Tarski links widget with a filter (r642)
+
+
+### Version 2.1.4 [&sect;](http://tarskitheme.com/2008/07/13/214-release/)
+
+#### Bug fixes
+
   * Correct overzealous calendar widget <abbr title="Cascading Stylesheets">CSS</abbr> (r687)
   * Sidebar upgrade routine only runs for older versions (r684)
   * Smarter unserialisation for Tarski options (r645)
-  * Fix Archives template layout for Janus style (r643)
+  * Fix Archives template layout for Janus style (r644)
 
-### Version 2.1.3 [&sect][39]
 
-  [38]: http://tarskitheme.com/2008/05/20/21-release/
+### Version 2.1.3 [&sect;](http://tarskitheme.com/2008/05/20/21-release/)
+
+#### Bug fixes
+
+  * Revert to using `curl_setopt()` for <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> 4 compatibility (r629)
+
+
+### Version 2.1.2 [&sect;](http://tarskitheme.com/2008/05/20/21-release/)
 
 #### Bug fixes
 
-  * Revert to using `curl_setopt()` for <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> 4 compatibility (r630)
+  * Fix version check timeout issues (r620)
+  * Add missing textdomain to forum link (r614)
 
-### Version 2.1.2 [&sect;][38]
 
-  [38]: http://tarskitheme.com/2008/05/20/21-release/
-
-#### Bug fixes
-  
-  * Fix version check timeout issues (r620, r625)
-  * Add missing textdomain to forum link (r615)
-
-### Version 2.1.1 [&sect;][37]
-
-	[37]: http://tarskitheme.com/2008/05/20/21-release/
+### Version 2.1.1 [&sect;](http://tarskitheme.com/2008/05/20/21-release/)
 	
 #### Bug fixes
 
-  * Fixed navbar character encoding problem (r597)
-  * Corrected Janus feed icon position (r593)
+  * Fixed navbar character encoding problem (r595)
+  * Corrected Janus feed icon position (r592)
+
 
 ### Version 2.1 [&sect;][36]
 

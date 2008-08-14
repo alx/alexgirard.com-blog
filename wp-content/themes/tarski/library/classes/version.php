@@ -76,8 +76,8 @@ class Version {
 		} else {
 			if(function_exists('curl_init')) { // If libcurl is installed, use that
 				$ch = curl_init(TARSKIVERSIONFILE);
-				curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_HEADER, 0);
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
                 curl_setopt($ch, CURLOPT_TIMEOUT, 1);
@@ -144,115 +144,23 @@ class Version {
 		$this->current_version_number();
 		$this->latest_version_number();
 		
-		$current_version = version_to_integer($this->current);
-		$latest_version = version_to_integer($this->latest);
+		$status = version_compare($this->latest, $this->current);
 		
-		if($latest_version) {
-			if($current_version === $latest_version)
-				$version_status = 'current';
-			elseif($current_version < $latest_version)
-				$version_status = 'older';
-			elseif($current_version > $latest_version)
-					$version_status = 'newer';
-		} else {
-			$version_status = 'no_connection';
-		}
-		
-		$this->status = $version_status;
-	}
-	
-}
-
-/**
- * theme_version() - Returns either the current or the latest theme version.
- * 
- * Creates a new Version object, if {@param string $version} is
- * set to "current" then it will return the current version, if
- * set to "latest" it will return the latest version.
- * @since 2.0
- * @param string $version
- * @return string
- */
-function theme_version($version = 'current') {
-	$tarski_version = new Version;
-	if($version == 'latest') {
-		$tarski_version->latest_version_number();
-		return $tarski_version->latest;
-	} else {
-		$tarski_version->current_version_number();
-		return $tarski_version->current;
-	}
-}
-
-/**
- * tarski_update_notifier() - Performs version checks and outputs the update notifier.
- * 
- * Creates a new Version object, checks the latest and current
- * versions, and lets the user know whether or not their version
- * of Tarski needs updating. The way it displays varies slightly
- * between the WordPress Dashboard and the Tarski Options page.
- * @since 2.0
- * @param string $location
- * @return string
- */
-function tarski_update_notifier($messages) {
-	global $plugin_page;
-	
-	if ( !is_array($messages) )
-		$messages = array();
-	
-	$version = new Version;
-	$version->current_version_number();
-	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
-	
-	// Update checking only performed when remote files can be accessed
-	if ( can_get_remote() ) {
-		
-		// Only performs the update check when notification is enabled
-		if ( get_tarski_option('update_notification') ) {
-			$version->latest_version_number();
-			$version->latest_version_link();
-			$version->version_status();
-			
-			if ( $version->status == 'older' ) {
-				$messages[] = sprintf(
-					__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
-					"<strong>$version->latest</strong>",
-					'<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>',
-					"<strong>$version->current</strong>"
-				);
-			} elseif ( $plugin_page == 'tarski-options' ) {
-				switch($version->status) {
-					case 'current':
-						$messages[] = sprintf(
-							__('Your version of Tarski (%s) is up to date.','tarski'),
-							"<strong>$version->current</strong>"
-						);
-					break;
-					case 'newer':
-						$messages[] = sprintf(
-							__('You appear to be running a development version of Tarski (%1$s). Please ensure you %2$s.','tarski'),
-							"<strong>$version->current</strong>",
-							"<a href=\"$svn_link\">" . __('stay updated','tarski') . '</a>'
-						);
-					break;
-					case 'no_connection':
-						$messages[] = sprintf(
-							__('No connection to update server. Your installed version is %s.','tarski'),
-							"<strong>$version->current</strong>"
-						);
-					break;
-				}
+		if ($this->latest) {
+			if ($status === 0) {
+				$this->status = 'current';
+			} elseif ($status === 1) {
+				$this->status = 'older';
+			} elseif ($status === -1) {
+				$this->status = 'newer';
+			} else {
+				$this->status = 'error';
 			}
-		} elseif ( $plugin_page == 'tarski-options' ) {
-			$messages[] = sprintf(
-				__('Update notification for Tarski is disabled. Your installed version is %s.','tarski'),
-				"<strong>$version->current</strong>"
-			);
+		} else {
+			$this->status = 'no_connection';
 		}
 	}
 	
-	return $messages;
 }
 
 ?>

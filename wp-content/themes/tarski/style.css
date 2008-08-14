@@ -3,9 +3,9 @@ Theme Name: Tarski
 Theme URI: http://tarskitheme.com/
 Description: An elegant, flexible theme developed by <a href="http://extralogical.net/">Ben Eastaugh</a> and <a href="http://ceejayoz.com/">Chris Sternal-Johnson</a>.
 Author: Benedict Eastaugh and Chris Sternal-Johnson
-Author URI: http://tarskitheme.com/
+Author URI: http://tarskitheme.com/about/
 Tags: white, custom header, fixed width, two columns, widgets, API, options page, update notifier
-Version: 2.1.4
+Version: 2.3
 .
 Released under the <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>.
 .
@@ -89,7 +89,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		sub { vertical-align: sub; }
 		hr { width: 100%; height: 1px; background: #ccc; color: #ccc; margin: 1em 0; border: none; padding: 0; }
 	pre, code { font-family: Courier, "Courier New", monospace; font-size: 1em; }
-		pre { overflow: scroll; margin: 0 0 1em 0; padding: 0 0 0.5em 0; }
+		pre { overflow: scroll; margin: 0 0 1em 0; padding: 0 0 0.5em 0; white-space: pre-wrap; }
 		body .primary pre { width: 500px; }
 		body .secondary pre { width: 200px; }
 		code { color: #7ca653; }
@@ -151,10 +151,18 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	a img { border: 1px solid #006a80; }
 	a:hover img, body .comment a:hover .avatar { border: 1px solid #a8001c; }
 		#wrapper .gallery a:link, #wrapper .gallery-item a:visited, #wrapper .gallery-item a:hover, #wrapper .gallery-item a:active, #wrapper a.imagelink2 img, #wrapper a.imagelink2:hover img, #wrapper a.imagelink:link, #wrapper a.imagelink:visited, #wrapper a.imagelink:hover, #wrapper a.imagelink:active, #wrapper a.imagelink2:link, #wrapper a.imagelink2:visited, #wrapper a.imagelink2:hover, #wrapper a.imagelink2:active { border: none; }
-		body .imageleft { float: left; margin: 0 10px 10px 0; }
-		body .imageright { float: right; margin: 0 0 10px 10px; }
+		body .imageleft, body .alignleft { float: left; margin: 0 10px 10px 0; }
+		body .imageright, body .alignright { float: right; margin: 0 0 10px 10px; }
 		body .imageblock { display: block; margin: 0 0 1em 0; }
-		body .imagecentre, body .imagecenter { display: block; text-align: center; margin: 0 auto 1em auto; }
+		body .imagecentre, body .imagecenter, body .centered, body .aligncenter { display: block; text-align: center; margin: 0 auto 1em auto; }
+		
+	body .gallery { margin: 0 auto 1em 0; }
+	body .gallery-item { float: left; margin-top: 10px; text-align: center; }
+	body #wrapper .content .gallery-item a, body #wrapper .content .attachment a { border-bottom:none; }
+	body .gallery-caption { margin-left: 0; }
+	
+	
+	
 
 	/* Tags & Tags page
 	--------------------------------------- */
@@ -233,6 +241,7 @@ input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; fo
 	body .searchbox { width: 200px; margin: 0 0 1em 0; }
 		#s { display: block; width: 194px; margin: 0 0 0.6em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 		#s:focus { background: #fff; }
+		body.js #searchlabel { display: none; }
 
 	/* Comment form
 	--------------------------------------- */
@@ -287,30 +296,3 @@ body .widget { margin: 0 0 2em 0; }
 		body .widget_calendar tfoot td { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 1.5em; }
 		body .widget_calendar #prev { text-align: left; }
 		body .widget_calendar #next { text-align: right; }
-		
-/*Add default wordpress align*/
-		img.centered {
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-			}
-
-		img.alignright {
-			padding: 4px;
-			margin: 0 0 2px 7px;
-			display: inline;
-			}
-
-		img.alignleft {
-			padding: 4px;
-			margin: 0 7px 2px 0;
-			display: inline;
-			}
-
-		.alignright {
-			float: right;
-			}
-
-		.alignleft {
-			float: left
-			}

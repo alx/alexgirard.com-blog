@@ -58,78 +58,15 @@ function tarski_widget_text_wrapper($text) {
 }
 
 /**
- * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
+ * tarski_widget_links_args() - Removes navbar links from the links widget.
  * 
- * If a link category has been selected as external links in the navbar,
- * it will be excluded from this array. Because wp_list_bookmarks() has no way
- * to exclude categories, this function is inefficient. This core patch
- * {@link http://trac.wordpress.org/ticket/6808} would allow a substantially
- * simpler function with one less database call.
- * @link http://trac.wordpress.org/ticket/6808
- * @since 2.0
- * @return array $options
- */
-function tarski_sidebar_links() {
-	$link_cat_args = array(
-		'orderby' => 'term_id',
-		'exclude' => get_tarski_option('nav_extlinkcat'),
-		'hierarchical'=> 0
-	);
-	
-	$link_categories = &get_terms('link_category', $link_cat_args);
-	
-	foreach($link_categories as $link_cat)
-		$link_cats[] = $link_cat->term_id;
-	
-	$link_cats = implode(',', $link_cats);
-	
-	$options = array(
-		'category' => $link_cats,
-		'category_before' => '',
-		'category_after' => '',
-		'title_before' => '<h3>',
-		'title_after' => '</h3>',
-		'show_images' => 0,
-		'show_description' => 0,
-	);
-	
-	$options = apply_filters('tarski_sidebar_links', $options);
-	return $options;
-}
-
-/**
- * tarski_widget_links() - Tarski links widget.
- *
- * Doesn't display links from the category being used in the navbar,
- * if one is set.
- * @since 2.1
- * @see wp_widget_links()
+ * @since 2.2
  * @param array $args
- * @return string
+ * @return array
  */
-function tarski_widget_links($args) {
-	extract($args, EXTR_SKIP);
-	wp_list_bookmarks(array_merge(tarski_sidebar_links(), array('category_before' => $before_widget, 'category_after' => $after_widget)));
-}
-
-/**
- * tarski_widget_search() - Replaces the default search widget.
- *
- * Hopefully temporary, a patch has been proposed for WP 2.6
- * which does the same thing.
- * @since 2.1
- * @link http://trac.wordpress.org/ticket/5567
- */
-function tarski_widget_search($args) {
-	extract($args, EXTR_SKIP);
-	$searchform_template = get_template_directory() . '/searchform.php';
-
-	if ( !file_exists($searchform_template) )
-		$searchform_template = get_theme_root() . '/default/searchform.php';
-
-	echo $before_widget;
-	include_once($searchform_template);
-	echo $after_widget;
+function tarski_widget_links_args($args) {
+	$args['exclude_category'] = get_tarski_option('nav_extlinkcat');
+	return $args;
 }
 
 /**
@@ -176,11 +113,11 @@ function tarski_recent_entries($args) {
 		<li>
 			<h4 class="recent-title"><a title="<?php _e('View this post', 'tarski'); ?>" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h4>
 			<p class="recent-metadata"><?php
-			echo tarski_date();
+			echo the_time(get_option('date_format'));
 			if(!get_tarski_option('hide_categories')) {
 				_e(' in ', 'tarski'); the_category(', ');
 			} ?></p>
-			<div class="recent-excerpt content"><?php tarski_excerpt(); ?></div>
+			<div class="recent-excerpt content"><?php the_excerpt(); ?></div>
 		</li>
 		<?php endwhile; ?>
 	</ul>

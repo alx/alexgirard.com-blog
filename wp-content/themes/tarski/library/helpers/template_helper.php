@@ -16,6 +16,20 @@ function is_wp_front_page() {
 }
 
 /**
+ * only_paginate_home() - Turns off paging for everything except feeds and the home page.
+ * 
+ * @since 2.2
+ * @param object $query
+ */
+function only_paginate_home($query) {
+	if ( !get_tarski_option('use_pages') && !is_admin() ) {
+		if ( !is_home() && !is_feed() && '' === $query->get('nopaging') ) {
+			$query->set('nopaging', 1);
+		}
+	}
+}
+
+/**
  * tarski_doctitle() - Returns the document title.
  * 
  * The order (site name first or last) can be set on the Tarski Options page.
@@ -25,6 +39,8 @@ function is_wp_front_page() {
  * @since 1.5
  * @param string $sep
  * @return string $doctitle
+ * @hook filter tarski_doctitle
+ * Filter document titles.
  */
 function tarski_doctitle($sep = '&middot;') {
 	$site_name = get_bloginfo('name');
@@ -173,6 +189,8 @@ function tarski_headerimage() {
  * wrapped in a p (paragraph) element.
  * @since 1.5
  * @return string
+ * @hook filter tarski_sitetitle
+ * Filter site title.
  */
 function tarski_sitetitle() {
 	if(get_tarski_option('display_title')) {
@@ -203,6 +221,8 @@ function tarski_sitetitle() {
  * 
  * @since 1.5
  * @return string
+ * @hook filter tarski_tagline
+ * Filter site tagline.
  */
 function tarski_tagline() {
 	if((get_tarski_option('display_tagline') && get_bloginfo('description')))
@@ -262,6 +282,8 @@ function home_link_name() {
  * @param boolean $return
  * @global object $wpdb
  * @return string $navbar
+ * @hook filter tarski_navbar
+ * Filter the HTML generated for the navbar.
  */
 function tarski_navbar($return = false) {
 	global $wpdb;
@@ -374,7 +396,7 @@ function add_admin_link($navbar) {
 	if(is_user_logged_in())
 		$navbar['admin'] = sprintf(
 			'<li><a id="nav-admin" href="%1$s">%2$s</a></li>',
-			 get_option('siteurl') . '/wp-admin/',
+			 admin_url(),
 			__('Site Admin','tarski')
 		);	
 	
@@ -419,6 +441,8 @@ function tarski_feedlink() {
  * @since 1.2
  * @param boolean $return
  * @return string $classes
+ * @hook filter tarski_bodyclass
+ * Filter the classes applied to the document body by Tarski.
  */
 function tarski_bodyclass($return = false) {
 	if(get_tarski_option('centred_theme')) { // Centred or not
@@ -459,6 +483,8 @@ function tarski_bodyclass($return = false) {
  * @global object $post
  * @global object $wp_query
  * @return string $body_id
+ * @hook filter tarski_bodyid
+ * Filter the document id value.
  */
 function tarski_bodyid($return = false) {
 	global $post, $wp_query;
