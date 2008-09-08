@@ -39,7 +39,7 @@ class DisqusAPI {
 
 	function get_forum_list($username, $password) {
 		$credentials = base64_encode($username . ':' . $password);
-		$response = @urlopen(DISQUS_API_URL . '/api/v2/get_forum_list/', array(
+		$response = urlopen(DISQUS_API_URL . '/api/v2/get_forum_list/', array(
 			'credentials'	=> $credentials,
 			'response_type'	=> 'php'
 		));
@@ -56,7 +56,7 @@ class DisqusAPI {
 
 	function get_forum_api_key($username, $password, $short_name) {
 		$credentials = base64_encode($username . ':' . $password);
-		$response = @urlopen(DISQUS_API_URL . '/api/v2/get_forum_api_key/', array(
+		$response = urlopen(DISQUS_API_URL . '/api/v2/get_forum_api_key/', array(
 			'credentials'	=> $credentials,
 			'short_name'	=> $short_name,
 			'response_type' => 'php'
@@ -107,7 +107,7 @@ class DisqusAPI {
 	}
 
 	function import_wordpress_comments($file) {
-		$response = @urlopen(DISQUS_IMPORTER_URL . '/api/import-wordpress-comments/',
+		$response = urlopen(DISQUS_IMPORTER_URL . '/api/import-wordpress-comments/',
 			array(
 				'forum_url' => $this->short_name,
 				'forum_api_key' => $this->forum_api_key,

@@ -12,9 +12,12 @@ class wassupOptions {
 	var $wassup_userlevel = "8";
 	var $wassup_screen_res = "800";
 	var $wassup_default_type = "";
+	var $wassup_default_spy_type = "";
 	var $wassup_default_limit = "10";
 	var $wassup_top10 ;
 	var $wassup_dashboard_chart;
+	var $wassup_geoip_map;
+	var $wassup_googlemaps_key;
 	var $wassup_time_format;	//new
 
 	/* recording settings */
@@ -95,8 +98,11 @@ class wassupOptions {
 		$this->wassup_userlevel = "8";
 		$this->wassup_screen_res = "800";
 		$this->wassup_default_type = "everything";
+		$this->wassup_default_spy_type = "everything";
 		$this->wassup_default_limit = "10";
 		$this->wassup_dashboard_chart = "0";
+		$this->wassup_geoip_map = "0";
+		$this->wassup_googlemaps_key = "";
 		$this->wassup_time_format = "24";
 		$this->wassup_widget_title = "Visitors Online";
 		$this->wassup_widget_ulclass = "links";
@@ -192,6 +198,19 @@ class wassupOptions {
 				__("One - two lines chart one axis","wassup"),
 				__("Two - two lines chart two axes","wassup"));
 		} elseif ($key == "wassup_default_type") {
+			$item_options = array("everything","spider","nospider","spam","nospam","nospamspider","loggedin","comauthor","searchengine","referrer");
+			$item_options_meta = array(
+				__("Everything","wassup"),
+				__("Spider","wassup"),
+				__("No spider","wassup"),
+				__("Spam","wassup"),
+				__("No Spam","wassup"),
+				__("No Spam, No Spider","wassup"),
+				__("Users logged in","wassup"),
+				__("Comment authors","wassup"),
+				__("Referer from search engine","wassup"),
+				__("Referer from ext link","wassup"));
+		} elseif ($key == "wassup_default_spy_type") {
 			$item_options = array("everything","spider","nospider","spam","nospam","nospamspider","loggedin","comauthor","searchengine","referrer");
 			$item_options_meta = array(
 				__("Everything","wassup"),

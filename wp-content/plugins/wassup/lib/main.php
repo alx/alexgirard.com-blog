@@ -564,9 +564,29 @@ function wAddSiteurl($inputurl) {
 }
 
 //Output wassup records in Digg spy style...
-function spyview ($from_date="",$to_date="",$rows="999") {
+function spyview ($from_date="",$to_date="",$rows="999",$spytype="") {
 	global $wpdb;
 
+		$whereis="";
+		if ($spytype == 'spider') {
+			$whereis = " AND spider!=''";
+		} elseif ($spytype == 'nospider') {
+			$whereis = " AND spider=''";
+		} elseif ($spytype == 'spam') {
+			$whereis = " AND spam>0";
+		} elseif ($spytype == 'nospam') {
+			$whereis = " AND spam=0";
+		} elseif ($spytype == 'nospamspider') {
+			$whereis = " AND spam=0 AND spider=''";
+		} elseif ($spytype == 'searchengine') {
+			$whereis = " AND searchengine!='' AND search!=''";
+		} elseif ($spytype == 'referrer') {
+			$whereis = " AND referrer!='' AND referrer NOT LIKE '%$wpurl%' AND searchengine='' AND search=''";
+		} elseif ($spytype == 'comauthor') {
+			$whereis = " AND comment_author!=''";
+		} elseif ($spytype == 'loggedin') {
+			$whereis = " AND username!=''";
+		}
 	//check for arguments...
 	if(empty($to_date)) $to_date = wassup_get_time();
 	if (empty($from_date)) $from_date = ($to_date - 5);
@@ -585,8 +605,7 @@ function spyview ($from_date="",$to_date="",$rows="999") {
 		$wpurl = get_bloginfo('wpurl');
 		$siteurl = get_bloginfo('siteurl');
 	}
-
-	$qryC = $wpdb->get_results("SELECT id, wassup_id, max(timestamp) as max_timestamp, ip, hostname, searchengine, urlrequested, agent, referrer, spider, username, comment_author FROM $table_tmp_name WHERE timestamp BETWEEN $from_date AND $to_date GROUP BY id ORDER BY max_timestamp DESC");
+	$qryC = $wpdb->get_results("SELECT id, wassup_id, max(timestamp) as max_timestamp, ip, hostname, searchengine, urlrequested, agent, referrer, spider, username, comment_author FROM $table_tmp_name WHERE timestamp BETWEEN $from_date AND $to_date $whereis GROUP BY id ORDER BY max_timestamp DESC");
 
 	if (!empty($qryC)) {
 		//restrict # of rows to display when needed...
@@ -610,36 +629,99 @@ function spyview ($from_date="",$to_date="",$rows="999") {
                         $referrer = __('Direct hit','wassup');
 		   } 
 		   // User is logged in or is a comment's author
-		   if ($cv->username != "" AND $cv->comment_author != "") {
+		   if ($cv->username != "") {
 		   	$unclass = "-log";
-		   } elseif ($cv->comment_author != "") {
+			$map_icon = "marker_loggedin.png";
+		   } elseif ($cv->comment_author != "" AND $cv->username == "") {
 		   	$unclass = "-aut";
+			$map_icon = "marker_author.png";
 		   } elseif ($cv->spider != "") {
 		   	$unclass = "-spider";
-		   } 
+			$map_icon = "marker_bot.png";
+		   } else {
+			$map_icon = "marker_user.png";
+		   }
+
 		   // Start getting GEOIP info
-		   /*
-		   // TODO
-		   $ch = curl_init("http://api.hostip.info/get_html.php?ip=".$ip[0]."&position=true");
-		   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		   curl_setopt($ch, CURLOPT_HEADER, 0);
-		   $data = curl_exec($ch);
-		   curl_close($ch);
-		   */
+		   $geo_url = "http://api.hostip.info/get_html.php?ip=".$ip[0]."&position=true";
+		   $data = file($geo_url);
+		   if (eregi("unknown", $data[0])) {
+			   $loc_country = eregi_replace("country: ", "", $data[0]);
+		   }
+		   if (eregi("unknown", $data[1])) {
+			   $loc_city = eregi_replace("city: ", "", $data[1]);
+		   }
+		   $geoloc = $loc_country." ".$loc_city;
+			if ($wassup_settings['wassup_geoip_map'] == 1) {
+				$gkey = $wassup_settings['wassup_googlemaps_key'];
+				   if ($geoloc != "") {
+					   $geocode = geocode($geoloc, $gkey);
+						if($geocode[0] != 200) {
+							$lat = explode(":", $data[2]);
+							$lat = $lat[1];
+							$lon = explode(":", $data[3]);
+							$lon = $lon[1];
+						} else {
+		                           		$lat = $geocode[2];
+				                        $lon = $geocode[3];
+						}
+				   } else {
+		                           $lat = 0;
+		                           $lon = 0;
+				   }
+			}
+		   $location = $data[0]." - ".$data[1];
 		   ?>
 		   <div class="sum-spy">
-
 		   <span class="sum-box<?php print $unclass; ?>">
 		   	<?php print $ip[0]; ?></span>
-		   <div class="sum-det"><span class="det1">
+		   <div class="sum-det-spy"><span class="det1">
 		   <?php
 		   	print '<a href="'.wAddSiteurl(htmlspecialchars(html_entity_decode($cv->urlrequested))).'" target="_BLANK">';
 		   	print stringShortener(html_entity_decode($cv->urlrequested), round($max_char_len*.9,0)); ?>
 		   </a></span><br />
 		   <span class="det2"><strong><?php print gmdate("H:i:s", $timestamp); ?> - </strong>
-		   <?php print $referrer; ?></span>
+		   <?php print $referrer; ?>
+		   <?php print "<br />".$location; //DEBUG ."$geocode[0]." / ".$lat." / ".$lon; 
+			?>
+		   </span>
 		   </div></div>
-<?php		} //end if row_count
+<?php
+	// Print the JS code to add marker on the map
+	if ($wassup_settings['wassup_geoip_map'] == 1) {
+		if ($lat!=0 && $lon!=0) {
+		$item_id = $cv->id;
+		$img_dir = $wpurl.'/wp-content/plugins/'.WASSUPFOLDER.'/img';
+                echo "
+                <script type=\"text/javascript\">
+                var icon$item_id = new GIcon();
+                icon$item_id.image = '".$img_dir."/".$map_icon."';
+                icon$item_id.shadow = '$img_dir/shadow.png';
+                icon$item_id.iconSize = new GSize(20.0, 34.0);
+                icon$item_id.shadowSize = new GSize(38.0, 34.0);
+                icon$item_id.iconAnchor = new GPoint(10.0, 17.0);
+                icon$item_id.infoWindowAnchor = new GPoint(10.0, 17.0);
+                var point = new GLatLng($lat,$lon);
+                var marker$item_id = new GMarker(point, icon$item_id);
+                map.addOverlay(marker$item_id);
+                GEvent.addListener(marker$item_id, 'click', function() {
+                marker$item_id.openInfoWindowHtml('<div style=\"white-space:nowrap\"><div class=\"bubble\">Ip: ".
+			$ip[0]
+			."<br />Hour: ".
+			gmdate('H:i:s', $timestamp)
+			."<br />Request: <a href=".
+			wAddSiteurl(htmlspecialchars(html_entity_decode($cv->urlrequested)))
+			." target=\"_BLANK\">".
+			stringShortener(html_entity_decode($cv->urlrequested), round($max_char_len*.9,0))
+			."</a><br />".
+			"</div></div>');
+                });
+                map.panTo(new GLatLng($lat,$lon),3);
+                </script>";
+                }
+	}
+
+		} //end if row_count
 		$row_count=$row_count+1;
 		} //end foreach
 	} else {
@@ -649,6 +731,33 @@ function spyview ($from_date="",$to_date="",$rows="999") {
 		}
 	} //end if !empty($qryC)
 } //end function spyview
+
+// Geocoding location with Google Maps
+function geocode($location, $key) {
+	//Three parts to the querystring: q is address, output is the format (
+	$address = urlencode($location);
+	$url = "http://maps.google.com/maps/geo?q=".$address."&output=csv&key=".$key;
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_HEADER,0);
+	curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER[HTTP_USER_AGENT]);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+	$data = curl_exec($ch);
+	curl_close($ch);
+
+	$data = explode(",",$data);
+	if ($data[0] == 200) {
+		return $data;
+
+	} else {
+		$error = $data[0];
+		return $error;
+	}
+}
 
 // How many digits have an integer
 function digit_count($n, $base=10) {
@@ -784,6 +893,16 @@ class MainItems {
                         case "main":
                                 $qry = $wpdb->get_results("SELECT id, wassup_id, max(timestamp) as max_timestamp, ip, hostname, urlrequested, agent, referrer, search, searchpage,  os, browser, language, screen_res, searchengine, spider, feed, username, comment_author, spam FROM ".$this->tableName." WHERE wassup_id IS NOT NULL AND timestamp BETWEEN ".$this->from_date." AND ".$this->to_date." $ss ".$this->whereis." GROUP BY wassup_id ORDER BY max_timestamp DESC ".$this->Limit."");
                                 return $qry;
+			/*
+		// Trying the unbuffered queries
+		$unbuff_db = mysql_connect('localhost', DB_USER, DB_PASSWORD);
+		mysql_select_db(DB_NAME);
+
+				$unbuff_qry = mysql_unbuffered_query("SELECT id, wassup_id, max(timestamp) as max_timestamp, ip, hostname, urlrequested, agent, referrer, search, searchpage,  os, browser, language, screen_res, searchengine, spider, feed, username, comment_author, spam FROM ".$this->tableName." WHERE wassup_id IS NOT NULL AND timestamp BETWEEN ".$this->from_date." AND ".$this->to_date." $ss ".$this->whereis." GROUP BY wassup_id ORDER BY max_timestamp DESC ".$this->Limit."");
+				$qry = mysql_fetch_object($unbuff_qry);
+                                return $qry;
+		mysql_close($unbuff_db);
+			*/
                         break;
                         // These are the queries to count the items hits/pages/spam
                         case "count":
@@ -791,6 +910,7 @@ class MainItems {
                                 return $itemstot;
                         break;
                 }
+
         }
 
 	// $Ctype = chart's type by time

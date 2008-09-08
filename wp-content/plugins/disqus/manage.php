@@ -1,6 +1,30 @@
 <?php
-// TODO: Fix all ../wp-includes/wp-content/ URLs so they aren't hard-coded.
-//
+if ( !defined('WP_CONTENT_URL') ) {
+	define('WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
+}
+if ( !defined('PLUGINDIR') ) {
+	define( 'PLUGINDIR', 'wp-content/plugins' ); // Relative to ABSPATH.  For back compat.
+}
+
+
+function dsq_plugin_basename($file) {
+	$file = dirname($file);
+
+	// From WP2.5 wp-includes/plugin.php:plugin_basename()
+	$file = str_replace('\\','/',$file); // sanitize for Win32 installs
+	$file = preg_replace('|/+|','/', $file); // remove any duplicate slash
+	$file = preg_replace('|^.*/' . PLUGINDIR . '/|','',$file); // get relative path from plugins dir
+
+	if ( strstr($file, '/') === false ) {
+		return $file;
+	}
+
+	$pieces = explode('/', $file);
+	return !empty($pieces[count($pieces)-1]) ? $pieces[count($pieces)-1] : $pieces[count($pieces)-2];
+}
+
+define('DSQ_PLUGIN_URL', WP_CONTENT_URL . '/plugins/' . dsq_plugin_basename(__FILE__));
+
 global $wp_version;
 global $dsq_version;
 global $dsq_api;
@@ -9,9 +33,14 @@ if ( !current_user_can('manage_options') ) {
 	die();
 }
 
+// HACK: For old versions of WordPress
+if ( !function_exists('wp_nonce_field') ) {
+	function wp_nonce_field() {}
+}
+
 // Handle export function.
 if( isset($_POST['export']) ) {
-	require_once(ABSPATH . 'wp-content/plugins/disqus/export.php');
+	require_once(dirname(__FILE__) . '/export.php');
 	dsq_export_wp();
 }
 
@@ -31,7 +60,7 @@ if ( isset($_POST['dsq_forum_url']) && isset($_POST['dsq_username']) && isset($_
 	$api_key = $dsq_api->get_forum_api_key($_POST['dsq_username'], $_POST['dsq_password'], $_POST['dsq_forum_url']);
 	update_option('disqus_forum_url', $_POST['dsq_forum_url']);
 
-	if ( $api_key < 0 ) {
+	if ( is_numeric($api_key) && $api_key < 0 ) {
 		update_option('disqus_replace', 'replace');
 		dsq_manage_dialog('There was an error completing the installation of DISQUS.  If you are still having issues, please contact <a href="mailto:help@disqus.com">help@disqus.com</a>.', true);
 	} else {
@@ -48,6 +77,13 @@ if ( isset($_POST['disqus_forum_url']) && isset($_POST['disqus_replace']) ) {
 	}
 	update_option('disqus_forum_url', $disqus_forum_url);
 	update_option('disqus_replace', $_POST['disqus_replace']);
+
+	if(isset($_POST['disqus_cc_fix'])) {
+		update_option('disqus_cc_fix', true);
+	} else {
+		update_option('disqus_cc_fix', false);
+	}
+
 	dsq_manage_dialog('Your settings have been changed.');
 }
 
@@ -70,16 +106,16 @@ if ( 2 == $step && isset($_POST['dsq_username']) && isset($_POST['dsq_password']
 
 // HACK: Our own styles for older versions of WordPress.
 if ( $wp_version < 2.5 ) {
-	echo "<link rel='stylesheet' href='../wp-content/plugins/disqus/styles/manage-pre25.css' type='text/css' />";
+	echo "<link rel='stylesheet' href='" . DSQ_PLUGIN_URL . "/styles/manage-pre25.css' type='text/css' />";
 }
 
 ?>
 <!-- Header -->
-<link rel='stylesheet' href='../wp-content/plugins/disqus/styles/manage.css' type='text/css' />
-<script type="text/javascript" src='../wp-content/plugins/disqus/scripts/manage.js'></script>
+<link rel='stylesheet' href='<?php echo DSQ_PLUGIN_URL; ?>/styles/manage.css' type='text/css' />
+<script type="text/javascript" src='<?php echo DSQ_PLUGIN_URL; ?>/scripts/manage.js'></script>
 
 <div class="wrap" id="dsq-wrap">
-	<img src="../wp-content/plugins/disqus/images/logo.png">
+	<img src="<?php echo DSQ_PLUGIN_URL; ?>/images/logo.png">
 
 	<ul id="dsq-tabs">
 		<li class="selected" id="dsq-tab-main"><?php echo (dsq_is_installed() ? 'Manage' : 'Install'); ?></li>
@@ -172,6 +208,7 @@ case 0:
 	$dsq_replace = get_option('disqus_replace');
 	$dsq_forum_url = strtolower(get_option('disqus_forum_url'));
 	$dsq_api_key = get_option('disqus_api_key');
+	$dsq_cc_fix = get_option('disqus_cc_fix');
 
 	if(dsq_is_installed()) {
 		$dsq_last_import_id = get_option('disqus_last_import_id');
@@ -204,19 +241,21 @@ if(function_exists('curl_init')) {
 			</tr>
 
 			<tr>
-				<th scope="row" valign="top">API Key</th>
+				<th scope="row" valign="top">DISQUS API Key</th>
 				<td>
 					<input type="text" name="disqus_api_key" value="<?php echo $dsq_api_key; ?>" tabindex="2">
 					<br />
-					This is the DISQUS API key for your website.  This is set for you when going through the installation steps.  Without it, the plugin runs in legacy mode.
+					This is set for you when going through the installation steps. Without it, the plugin runs in <a href="http://disqus.com/docs/wordpress/#legacy-mode" target="_blank">legacy mode</a>.
 				</td>
 			</tr>
 
 			<tr>
 				<th scope="row" valign="top">Use DISQUS on</th>
 				<td>
-					<select name="disqus_replace" tabindex="3">
-						<option value="empty" <?php if('empty'==$dsq_replace){echo 'selected';}?>>Only future blog posts and existing posts without WordPress comments.</option>
+					<select name="disqus_replace" tabindex="3" class="disqus-replace">
+						<?php if ( dsq_legacy_mode() ) : ?>
+							<option value="empty" <?php if('empty'==$dsq_replace){echo 'selected';}?>>Only future blog posts and existing posts without WordPress comments.</option>
+						<?php endif ; ?>
 						<option value="all" <?php if('all'==$dsq_replace){echo 'selected';}?>>On all existing and future blog posts.</option>
 						<option value="closed" <?php if('closed'==$dsq_replace){echo 'selected';}?>>Only on blog posts with closed comments.</option>
 					</select>
@@ -224,6 +263,15 @@ if(function_exists('curl_init')) {
 					NOTE: Your WordPress comments will never be lost.
 				</td>
 			</tr>
+			
+			<tr>
+				<th scope="row" valign="top">Comment Count</th>
+				<td>
+					<input type="checkbox" id="disqus_comment_count" name="disqus_cc_fix" <?php if($dsq_cc_fix){echo 'checked="checked"';}?> >
+					<label for="disqus_comment_count">Check this if you have a problem with comment counts not showing on permalinks</label> (<a href="http://disqus.com/docs/wordpress/#comment-count" target="_blank">more info</a>).
+				</td>
+			</tr>
+			
 		</table>
 
 		<p class="submit" style="text-align: left">
@@ -233,15 +281,15 @@ if(function_exists('curl_init')) {
 
 		<table class="form-table">
 			<tr>
-				<th scope="row" valign="top">Export comments to DISQUS</th>
+				<th scope="row" valign="top">Import comments into DISQUS</th>
 				<td>
 					<form action="?page=disqus" method="POST">
 						<?php wp_nonce_field('dsq-export'); ?>
-						<input type="submit" value="Export" name="export"
+						<input type="submit" value="Import" name="export"
 <?php if($dsq_last_import_id) : ?>
-							onclick="return confirm('You\'ve already exported your comments.  Are you sure you want to do this again?');"
+							onclick="return confirm('You\'ve already imported your comments.  Are you sure you want to do this again?');"
 <?php endif; ?>
-						>
+						> This will sync your WordPress comments with DISQUS
 						<br />
 						<span style="font-size: 14px;">
 <?php if($dsq_last_import_id) : ?>

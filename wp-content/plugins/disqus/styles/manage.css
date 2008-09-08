@@ -22,3 +22,7 @@ ul#dsq-tabs {
 	padding: 0;
 	border: 0;
 }
+
+select.disqus-replace {
+    border-color: #C6D9E9;
+}

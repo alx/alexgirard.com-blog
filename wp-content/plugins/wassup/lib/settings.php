@@ -89,6 +89,27 @@
 		<p><input type="checkbox" name="wassup_dashboard_chart" value="1" <?php if($wassup_options->wassup_dashboard_chart == 1) print "CHECKED"; ?> /> <strong><?php _e('Display small chart in the dashboard','wassup'); ?></strong>
 		</p><br />
 
+		<br /><h3><?php _e('GEO IP Map (Spy view)','wassup'); ?></h3>
+		<?php echo $code_error; ?>
+		<?php if (function_exists(curl_init)) { ?>
+		<?php // Test Google Maps Key If the test fails deactivate *map options 
+		if ($wassup_options->wassup_geoip_map == 1) {
+			$code = geocode("Ancona", $wassup_options->wassup_googlemaps_key);
+				if ($code[0] != "200") { 
+					$code_error = "<script type=\"text/javascript\">jQuery(document).ready(function($){ $(\"#key_error\").fadeIn(2000); });</script><p id='key_error' style='text-align:center;background:#FA8C97;border:1px solid #999;padding:4px;margin:4px;width:40%;display:none;'>--->> <strong>WARNING</strong> Activation problem >> Error code: <a href='http://code.google.com/apis/maps/documentation/reference.html#GGeoStatusCode' target='_BLANK'>".$code."</a> <<---</p>";
+					$wassup_options->wassup_geoip_map = 0;
+					$wassup_options->wassup_googlemaps_key = "";
+					$wassup_options->saveSettings();
+				}
+		      }
+		?>
+		<p><input type="checkbox" name="wassup_geoip_map" value="1" <?php if($wassup_options->wassup_geoip_map == 1) print "CHECKED"; ?> /> <strong><?php _e('Display a GEO IP Map in the spy visitors view','wassup'); ?></strong>
+		</p>
+		<p><strong>Google Maps API key:</strong> <input <?php echo $style_key; ?> type="text" name="wassup_googlemaps_key" size="40" value="<?php print $wassup_options->wassup_googlemaps_key; ?>" /> - <a href="http://www.google.com/maps/api_signup?url=<?php echo $wpurl; ?>">signup for your key</a></p></br />
+		<?php } else { ?>
+		<p>Geo IP Map requires PHP <strong>Curl</strong> installed. Please install it to be able to activate this feature.</p>
+		<?php } ?>
+
 		<br /><h3><?php _e('Time format','wassup'); ?></h3>
 		<p>12h <input type="radio" name="wassup_time_format" value="12" <?php if($wassup_options->wassup_time_format == 12) print "CHECKED"; ?> /> - 24h <input type="radio" name="wassup_time_format" value="24" <?php if($wassup_options->wassup_time_format == 24) print "CHECKED"; ?> /> <strong><?php _e('Time format 12/24 hour','wassup'); ?></strong>
 		</p><br />
@@ -306,6 +327,10 @@
 		<?php	$browscap = ini_get("browscap");
 			if ( $browscap == "") { _e("not set","wassup"); } 
 			else { echo basename($browscap); }
+		?></p>
+	   	<p><strong>PHP <?php _e("Curl","wassup"); ?></strong>:
+		<?php	if (!function_exists(curl_init)) { echo "<span style='color:red;'>".__("not installed","wassup")."</span>"; } 
+			else { echo "<span style='color:green;'>".__("installed","wassup")."</span>"; }
 		?></p>
 		<br /><br />
 		<p style="clear:both;padding-left:0;padding-top:15px;"><input type="submit" name="submit-options3" value="<?php _e('Save Settings','wassup'); ?>" />&nbsp;<input type="reset" name="reset" value="<?php _e('Reset','wassup'); ?>" /> - <input type="submit" name="reset-to-default" value="<?php _e("Reset to Default Settings", "wassup"); ?>" /></p><br />

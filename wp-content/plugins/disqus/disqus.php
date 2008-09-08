@@ -4,7 +4,7 @@ Plugin Name: DISQUS Comment System
 Plugin URI: http://disqus.com/
 Description: The DISQUS comment system replaces your WordPress comment system with your comments hosted and powered by DISQUS. Head over to the Comments admin page to set up your DISQUS Comment System.
 Author: DISQUS.com <team@disqus.com>
-Version: 2.0-2492
+Version: 2.02-2869
 Author URI: http://disqus.com/
 
 */
@@ -24,7 +24,7 @@ require_once('lib/api.php');
  * @global	string	$dsq_version
  * @since	1.0
  */
-$dsq_version = '2.0';
+$dsq_version = '2.02';
 /**
  * Response from DISQUS get_thread API call for comments template.
  *
@@ -114,7 +114,7 @@ function dsq_manage_dialog($message, $error = false) {
 
 	echo '<div '
 		. ( $error ? 'id="disqus_warning" ' : '')
-	    . 'class="updated fade'
+		. 'class="updated fade'
 		. ( ($wp_version < 2.5 && $error) ? '-ff0000' : '' )
 		. '"><p><strong>'
 		. $message
@@ -126,20 +126,23 @@ function dsq_sync_comments($post, $comments) {
 
 	// Get last_comment_date id for $post with Disqus metadata
 	// (This is the date that is stored in the Disqus DB.)
-	$last_comment_date = $wpdb->get_var('SELECT max(comment_date) FROM wp_comments WHERE comment_post_ID=' . intval($post->ID) . " AND comment_agent LIKE 'Disqus/%';");
-	$last_comment_date = strtotime($last_comment_date);
+	$last_comment_date = $wpdb->get_var('SELECT max(comment_date) FROM ' . $wpdb->prefix . 'comments WHERE comment_post_ID=' . intval($post->ID) . " AND comment_agent LIKE 'Disqus/%';");
+	if ( $last_comment_date ) {
+		$last_comment_date = strtotime($last_comment_date);
+	}
+
 	if ( !$last_comment_date ) {
 		$last_comment_date = 0;
 	}
 
 	foreach ( $comments as $comment ) {
-		// If comment date of comment is <= last_comment_date, skip comment.
-		//
-		if ( $comment['date'] <= $last_comment_date ) {
+		if ( $comment['imported'] ) {
+			continue;
+		} else if ( $comment['date'] <= $last_comment_date ) {
+			// If comment date of comment is <= last_comment_date, skip comment.
 			continue;
 		} else {
 			// Else, insert_comment
-			//
 			$commentdata = array(
 				'comment_post_ID' => $post->ID,
 				'comment_author' => $comment['user']['display_name'],
@@ -214,7 +217,7 @@ function dsq_comment_count() {
 
 	if ( $dsq_cc_script_embedded ) {
 		return;
-	} else if ( (is_single() || is_page() || $withcomments) ) {
+	} else if ( (is_single() || is_page() || $withcomments || is_feed()) ) {
 		return;
 	}
 
@@ -344,7 +347,9 @@ add_filter('bloginfo_url', 'dsq_bloginfo_url');
 add_action('loop_start', 'dsq_loop_start');
 
 // For comment count script.
-add_action('loop_end', 'dsq_comment_count');
+if ( !get_option('disqus_cc_fix') ) {
+	add_action('loop_end', 'dsq_comment_count');
+}
 add_action('wp_footer', 'dsq_comment_count');
 
 ?>

@@ -105,7 +105,7 @@ if (!$hashfail) {
 	// ACTION: RUN SPY VIEW
 	if ($_GET['action'] == "spy") {
 		if (empty($rows)) { $rows = 999; }
-		spyview($from_date,$to_date,$rows);
+		spyview($from_date,$to_date,$rows,$wassup_options->wassup_default_spy_type);
 
 	// ACTION: SUMMARY PIE CHART
 	} elseif ($_GET['action'] == "piechart") {

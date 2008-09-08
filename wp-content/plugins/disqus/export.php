@@ -2,6 +2,8 @@
 /**
  * Adapted from WordPress 2.2
  */
+set_time_limit(0);
+ini_set('memory_limit', '256M');
 define('WXR_VERSION', '1.0');
 
 // TODO: WordPress >= 2.1 renamed functions-formatting.php to formatting.php.
@@ -61,10 +63,6 @@ function dsq_export_wp() {
 	$fp = fopen($filename, 'w');
 
 	ob_start();
-
-//	header('Content-Description: File Transfer');
-//	header("Content-Disposition: attachment; filename=$filename");
-//	header('Content-type: text/xml; charset=' . get_option('blog_charset'), true);
 
 	$where = '';
 	if ( isset( $_GET['author'] ) && $_GET['author'] != 'all' ) {
@@ -199,11 +197,29 @@ function dsq_export_wp() {
 		<wp:wxr_version><?php echo WXR_VERSION; ?></wp:wxr_version>
 		<wp:base_site_url><?php echo wxr_site_url(); ?></wp:base_site_url>
 		<wp:base_blog_url><?php bloginfo_rss('url'); ?></wp:base_blog_url>
+
+	<?php
+		$contents = ob_get_clean();
+		fwrite($fp, $contents);
+	?>
+
 	<?php if ( $cats ) : foreach ( $cats as $c ) : ?>
+	<?php
+		ob_start();
+	?>
 		<wp:category><wp:category_nicename><?php echo $c->category_nicename; ?></wp:category_nicename><wp:category_parent><?php echo $c->category_parent ? $cats[$c->category_parent]->cat_name : ''; ?></wp:category_parent><wp:posts_private><?php echo $c->posts_private ? '1' : '0'; ?></wp:posts_private><wp:links_private><?php echo $c->links_private ? '1' : '0'; ?></wp:links_private><?php wxr_cat_name($c); ?><?php wxr_category_description($c); ?></wp:category>
+	<?php
+		$contents = ob_get_clean();
+		fwrite($fp, $contents);
+	?>
 	<?php endforeach; endif; ?>
 		<?php do_action('rss2_head'); ?>
-		<?php if ($posts) { foreach ($posts as $post) { start_wp(); ?>
+		<?php 
+		if ($posts) {
+			foreach ($posts as $post) {
+				ob_start();
+				start_wp();
+		?>
 	<item>
 	<title><?php the_title_rss() ?></title>
 	<link><?php permalink_single_rss() ?></link>
@@ -236,7 +252,12 @@ function dsq_export_wp() {
 	<?php } ?>
 	<?php } ?>
 	<?php
+		$contents = ob_get_clean();
+		fwrite($fp, $contents);
+	?>
+	<?php
 	$comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_post_ID = $post->ID AND comment_agent NOT LIKE 'Disqus/%'");
+	ob_start();
 	if ( $comments ) { foreach ( $comments as $c ) { ?>
 	<wp:comment>
 	<wp:comment_id><?php echo $c->comment_ID; ?></wp:comment_id>
@@ -253,14 +274,18 @@ function dsq_export_wp() {
 	</wp:comment>
 	<?php } } ?>
 		</item>
+	<?php
+		$contents = ob_get_clean();
+		fwrite($fp, $contents);
+	?>
 	<?php } } ?>
+	<?php ob_start(); ?>
 	</channel>
 	</rss>
 <?php
-	$contents = ob_get_contents();
-	ob_end_clean();
-
+	$contents = ob_get_clean();
 	fwrite($fp, $contents);
+
 	$response = $dsq_api->import_wordpress_comments($filename);
 	$import_id = $response;
 

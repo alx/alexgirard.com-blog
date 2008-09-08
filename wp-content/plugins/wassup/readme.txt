@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: michelem, helened
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=michele%40befree%2eit&item_name=wp%2dstatpress&no_shipping=0&no_note=1&tax=0&currency_code=EUR&lc=IT&bn=PP%2dDonationsBF&charset=UTF%2d8
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=michele%40befree%2eit&item_name=WassUp&no_shipping=0&no_note=1&tax=0&currency_code=EUR&lc=IT&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: tracker, tracking, statistics, analyze, web, realtime, stats, ajax, visitors, visits, online users, details, seo, admin, spy, visitors, widgets, widget, sidebar
 Requires at least: 2.2
 Tested up to: 2.5.* - 2.3.2 - 2.3.1 - 2.3 - 2.2
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 Analyze your visitors traffic with real time statistics, chart, a lot of chronological information and a sidebar Widget.
 

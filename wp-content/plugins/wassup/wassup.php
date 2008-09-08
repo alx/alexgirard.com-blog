@@ -3,7 +3,7 @@
 Plugin Name: WassUp
 Plugin URI: http://www.wpwp.org
 Description: Wordpress plugin to analyze your visitors traffic with real time stats, chart and a lot of chronological informations. It has sidebar Widget support to show current online visitors and other statistics.
-Version: 1.6.1
+Version: 1.6.2
 Author: Michele Marcucci, Helene D.
 Author URI: http://www.michelem.org/
 
@@ -16,7 +16,7 @@ http://www.gnu.org/licenses/gpl.txt
 if (preg_match('#'.basename(__FILE__) .'#', $_SERVER['PHP_SELF'])) { 
 	die('Permission Denied! You are not allowed to call this page directly.');
 }
-$version = "1.6.1";
+$version = "1.6.2";
 define('WASSUPFOLDER', dirname(plugin_basename(__FILE__)), TRUE);
 require_once(dirname(__FILE__).'/lib/wassup.class.php');
 require_once(dirname(__FILE__).'/lib/main.php');
@@ -369,6 +369,14 @@ if ($_GET['page'] == "wassup-options") {
 </script>
 <?php
 } elseif ($_GET['page'] == "wassup-spy") {
+	//## Filter detail lists by visitor type...
+	if (isset($_GET['spytype'])) {
+		$spytype = htmlentities(attribute_escape($_GET['spytype']));
+		$wassup_options->wassup_default_spy_type = $spytype;
+	} elseif ($wassup_options->wassup_default_spy_type != '') {
+		$spytype = $wassup_options->wassup_default_spy_type;
+	}
+	$wassup_options->saveSettings();
 ?>
 <script type="text/javascript">
   //<![CDATA[
@@ -377,7 +385,7 @@ if ($_GET['page'] == "wassup-options") {
   	$('#spyContainer').spy({ 
   		limit: 10, 
   		fadeLast: 5, 
-		ajax: '<?php echo $wpurl."/wp-content/plugins/".WASSUPFOLDER."/lib/action.php?action=spy&whash=$whash"; ?>',
+		ajax: '<?php echo $wpurl."/wp-content/plugins/".WASSUPFOLDER."/lib/action.php?action=spy&whash=$whash&spytype=$spytype"; ?>',
   		timeout: 2000, 
   		'timestamp': myTimestamp, 
 		fadeInSpeed: 1100 });
@@ -420,6 +428,13 @@ function wassup_add_pages() {
 
 function WassUp() {
         global $wpdb, $wp_version, $version, $wpurl, $wassup_options, $whash;
+	
+	// Start getting time of execution to debug SQL query
+	$mtime = microtime();
+	$mtime = explode(" ",$mtime);
+	$mtime = $mtime[1] + $mtime[0];
+	$starttime = $mtime;
+	// This could be commented out
 
 	//#debug...
 	//error_reporting(E_ALL | E_STRICT);	//debug, E_STRICT=php5 only
@@ -459,6 +474,8 @@ function WassUp() {
 		$wassup_options->wassup_refresh = $_POST['wassup_refresh'];
 		$wassup_options->wassup_userlevel = $_POST['wassup_userlevel'];
 		$wassup_options->wassup_dashboard_chart = $_POST['wassup_dashboard_chart'];
+		$wassup_options->wassup_geoip_map = $_POST['wassup_geoip_map'];
+		$wassup_options->wassup_googlemaps_key = $_POST['wassup_googlemaps_key'];
 		$wassup_options->wassup_time_format = $_POST['wassup_time_format'];
 		$wassup_options->wassup_default_type = $_POST['wassup_default_type'];
 		$wassup_options->wassup_default_limit = $_POST['wassup_default_limit'];
@@ -639,19 +656,58 @@ function WassUp() {
 	<br /><p class="legend"><a href="#" class="toggle-all"><?php _e("Expand All", "wassup"); ?></a></p>
 	
 <?php	// HERE IS THE SPY MODE VIEW
-	} elseif ($_GET['page'] == "wassup-spy") { ?>
+	} elseif ($_GET['page'] == "wassup-spy") { 
+	?>
 		<h2><?php _e("SPY Visitors", "wassup"); ?></h2>
 		<p class="legend"><?php echo __("Legend", "wassup").': <span class="box-log">&nbsp;&nbsp;</span> '.__("Logged-in Users", "wassup").' <span class="box-aut">&nbsp;&nbsp;</span> '.__("Comments Authors", "wassup").' <span class="box-spider">&nbsp;&nbsp;</span> '.__("Spiders/bots", "wassup"); ?></p><br />
 		<div>
 		<a href="#?" onclick="return pauseSpy();"><span id="spy-pause"><?php _e("Pause", "wassup"); ?></span></a>
 		<a href="#?" onclick="return playSpy();"><span id="spy-play"><?php _e("Play", "wassup"); ?></span></a>
+                - <span style="font-size: 11px;"><?php _e('Spy items by','wassup'); ?>: <select name="navi" style="font-size: 11px;" onChange="window.location.href=this.options[this.selectedIndex].value;">
+                <?php
+                //## selectable filter by type of record (wassup_default_spy_type)
+		if (isset($_GET['spytype'])) {
+			$spytype = htmlentities(attribute_escape($_GET['spytype']));
+		} elseif ($wassup_options->wassup_default_spy_type != '') {
+			$spytype = $wassup_options->wassup_default_spy_type;
+		}
+                $selected=$spytype;
+                $optionargs="?page=wassup-spy&spytype=";
+                $wassup_options->showFormOptions("wassup_default_spy_type","$selected","$optionargs");
+                ?>
+                </select>
+                </span>
 		<br />&nbsp;<br /></div>
+
+	<?php // GEO IP Map
+	if ($wassup_options->wassup_geoip_map == 1 AND $wassup_options->wassup_googlemaps_key != "") { ?>
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?php echo $wassup_options->wassup_googlemaps_key; ?>" type="text/javascript"></script>
+		<div id="map" style="width: <?php echo ($screen_res_size*95/100); ?>px; height: 220px;border:2px solid #999;"></div>
+		    <script type="text/javascript">
+		    //<![CDATA[
+		    if (GBrowserIsCompatible()) { 
+		      // Display the map, with some controls and set the initial location 
+		      var map = new GMap2(document.getElementById("map"));
+		      map.addControl(new GSmallMapControl());
+		      map.addControl(new GMapTypeControl());
+		      //map.enableScrollWheelZoom();
+		      map.setCenter(new GLatLng(0,0),3);
+		    }
+		    // display a warning if the browser was not compatible
+		    else {
+		      alert("Sorry, the Google Maps API is not compatible with this browser");
+		    }
+		    //]]>
+		    </script>
+		<p>&nbsp;</p>
+	<? } //end if geoip_map 
+	?>
 		<div id="spyContainer">
 		<?php 
 		//display the last few hits here. The rest will be added by spy.js
 		$to_date = (wassup_get_time()-2);
 		$from_date = ($to_date - 12*(60*60)); //display last 10 visits in 12 hours...
-		spyview($from_date,$to_date,10); ?>
+		spyview($from_date,$to_date,10,$spytype); ?>
 		</div><br />
 
 <?php	// HERE IS THE OPTIONS VIEW
@@ -1181,10 +1237,19 @@ function WassUp() {
 		if (!isset($_GET['limit']) OR $_GET['limit'] == 10 OR $_GET['limit'] == 20) {
 		        print $expcol;
 		}
+	if($con) mysql_close($con);
+	} //end MAIN/DETAILS VIEW 
 
-	} //end MAIN/DETAILS VIEW ?>
+	// End calculating execution time of script
+	$mtime = microtime();
+	$mtime = explode(" ",$mtime);
+	$mtime = $mtime[1] + $mtime[0];
+	$endtime = $mtime;
+	$totaltime = ($endtime - $starttime);
 
-	<p><small>WassUp ver: <?php echo $version.' - '.__("Check the official","wassup").' <a href="http://www.wpwp.org" target="_BLANK">WassUp</a> '.__("page for updates, bug reports and your hints to improve it","wassup").' - <a href="http://trac.wpwp.org/wiki/Documentation" title="Wassup '.__("User Guide documentation","wassup").'">Wassup '.__("User Guide documentation","wassup").'</a>'; ?></small></p>
+?>
+
+	<p><small>WassUp ver: <?php echo $version.' - '.__("Check the official","wassup").' <a href="http://www.wpwp.org" target="_BLANK">WassUp</a> '.__("page for updates, bug reports and your hints to improve it","wassup").' - <a href="http://trac.wpwp.org/wiki/Documentation" title="Wassup '.__("User Guide documentation","wassup").'">Wassup '.__("User Guide documentation","wassup").'</a>'; ?> - Exec time: <?php echo $totaltime ?></small></p>
 
 	</div>	<!-- end wrap -->
 <?php 
@@ -1475,7 +1540,7 @@ function wassupAppend() {
 	if (stristr($urlRequested,"/wp-content/themes") === FALSE || stristr($urlRequested,"comment") !== FALSE) {	//moved and modified to allow comment requests
 		
 	//# More recording exclusion controls
-	if ($wassup_options->wassup_loggedin == 1 || !$loggedinuser ) {
+	if ($wassup_options->wassup_loggedin == 1 || !is_user_logged_in()) {
 	if ($wassup_options->wassup_attack == 1 || stristr($userAgent,"libwww-perl") === FALSE ) {
 	if (!is_404() || $hackercheck) {	//don't record 404 pages...
 
@@ -2355,6 +2420,7 @@ function wGetSpider($agent="",$hostname="", $browser=""){
 			"MyBlogLog|Yahoo!MyBlogLogAPIClient|F|",
 			"Yahoo!|slurp@inktomi|","Yahoo!|Yahoo!Slurp|","Yahoo!|MMCrawler|",
 			"Yahoo FeedSeeker|YahooFeedSeeker|",
+			"Tailrank|Spinn3r|F|",
 			"Yandex|Yandex|");
 		foreach($lines as $line_num => $spider) {
 			list($nome,$key,$typebot)=explode("|",$spider);
@@ -2691,7 +2757,7 @@ function wassup_widget($wargs) {
 		print "$before_title ".__('Last referers','wassup')." $after_title";
 		print "<ul class='$ulclass'>";
 		foreach ($query_ref as $eref) {
-			print "<li>- <a href='".attribute_escape($eref->referrer)."' target='_blank' rel='nofollow'>".stringShortener(pregi_replace("#https?://#", "", attribute_escape($eref->referrer)), $chars)."</a></li>";
+			print "<li>- <a href='".attribute_escape($eref->referrer)."' target='_blank' rel='nofollow'>".stringShortener(eregi_replace("#https?://#", "", attribute_escape($eref->referrer)), $chars)."</a></li>";
 		}
 		print "</ul>";
 	}

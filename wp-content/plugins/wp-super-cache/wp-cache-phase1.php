@@ -10,6 +10,11 @@ if( !defined( 'WPCACHEHOME' ) )
 
 include( WPCACHEHOME . 'wp-cache-base.php');
 
+if(defined('DOING_CRON')) {
+	require_once( WPCACHEHOME . 'wp-cache-phase2.php');
+	return;
+}
+
 $mutex_filename = 'wp_cache_mutex.lock';
 $new_cache = false;
 
@@ -85,7 +90,7 @@ function wp_cache_postload() {
 
 	if (!$cache_enabled) 
 		return;
-	require( WPCACHEHOME . 'wp-cache-phase2.php');
+	require_once( WPCACHEHOME . 'wp-cache-phase2.php');
 	wp_cache_phase2();
 }
 

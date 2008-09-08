@@ -21,6 +21,8 @@ function wp_cache_phase2() {
 		add_action('delete_comment', 'wp_cache_no_postid', 0);
 		add_action('switch_theme', 'wp_cache_no_postid', 0); 
 
+		add_action('wp_cache_gc','wp_cache_gc_cron');
+
 		do_cacheaction( 'add_cacheaction' );
 	}
 	if( $_SERVER["REQUEST_METHOD"] == 'POST' || get_option('gzipcompression')) 
@@ -31,6 +33,10 @@ function wp_cache_phase2() {
 		return;
 	if (wp_cache_user_agent_is_rejected()) return;
 	$wp_cache_meta_object = new CacheMeta;
+	if($wp_cache_gzip_encoding)
+		header('Vary: Accept-Encoding, Cookie');
+	else
+		header('Vary: Cookie');
 	ob_start('wp_cache_ob_callback'); 
 	register_shutdown_function('wp_cache_shutdown_callback');
 }
@@ -211,11 +217,12 @@ function wp_cache_ob_callback($buffer) {
 				$gzsize = strlen($gzdata);
 
 				array_push($wp_cache_meta_object->headers, 'Content-Encoding: ' . $wp_cache_gzip_encoding);
-				array_push($wp_cache_meta_object->headers, 'Vary: Accept-Encoding');
+				array_push($wp_cache_meta_object->headers, 'Vary: Accept-Encoding, Cookie');
 				array_push($wp_cache_meta_object->headers, 'Content-Length: ' . strlen($gzdata));
 				// Return uncompressed data & store compressed for later use
 				fputs($fr, $gzdata);
 			}else{ // no compression
+				array_push($wp_cache_meta_object->headers, 'Vary: Cookie');
 				fputs($fr, $buffer.$log);
 			}
 			if( $fr2 )
@@ -374,6 +381,7 @@ function wp_cache_shutdown_callback() {
 	}
 
 	@ob_end_flush();
+	flush(); //Ensure we send data to the client
 	if ($new_cache) {
 		$serial = serialize($wp_cache_meta_object);
 		if( !wp_cache_writers_entry() )
@@ -392,9 +400,9 @@ function wp_cache_shutdown_callback() {
 	if( mt_rand( 0, $wp_cache_gc ) != 1 )
 		return;
 
-	// we delete expired files
-	flush(); //Ensure we send data to the client
-	wp_cache_phase2_clean_expired($file_prefix);
+	// we delete expired files, using a wordpress cron event
+	// since flush() does not guarantee hand-off to client - problem on Win32 and suPHP
+	if(!wp_next_scheduled('wp_cache_gc')) wp_schedule_single_event(time() + 10 , 'wp_cache_gc');
 }
 
 function wp_cache_no_postid($id) {
@@ -403,7 +411,7 @@ function wp_cache_no_postid($id) {
 
 function wp_cache_get_postid_from_comment($comment_id) {
 	global $super_cache_enabled;
-	$comment = get_commentdata($comment_id, 1, true);
+	$comment = get_comment($comment_ID, ARRAY_A);
 	$postid = $comment['comment_post_ID'];
 	// Do nothing if comment is not moderated
 	// http://ocaoimh.ie/2006/12/05/caching-wordpress-with-wp-cache-in-a-spam-filled-world
@@ -489,4 +497,10 @@ function wp_cache_post_id() {
 	if (isset( $_POST[ 'p' ] ) && $_POST['p'] > 0) return $_POST['p'];
 	return 0;
 }
+
+function wp_cache_gc_cron() {
+	global $file_prefix;
+	wp_cache_phase2_clean_expired($file_prefix);
+}
+
 ?>

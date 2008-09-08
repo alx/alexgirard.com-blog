@@ -1,0 +1,1297 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-11 10:52+0200\n"
+"PO-Revision-Date: 2008-08-11 11:20+0100\n"
+"Last-Translator: Bentux <bentux@free.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:33
+msgid "Sorry, Wassup requires WordPress 2.2 or higher to work"
+msgstr "Désolé, Wassup require Wordpress 2.2 ou supérieur"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:92
+msgid "WassUp has detected a problem with \"session.save_path\" setting in your Wordpress/PHP configuration. Statistics logging has been disabled as a result. To fix, go to admin menu, \"Wassup-->Options-->Manage Files & Database\" and modify \"Temporary files location folder\"."
+msgstr "Wassup a détécté un probleme avec le paramétrage de  \"session.save_path\" dans votre configuration de Wordpress/PHP. Pour résoudre le problème allez dans le menu d'admin,  \"Wassup-->Options-->Manage Files & Database\" and modify \"Temporary files location folder\"."
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:94
+msgid "WassUp has detected a problem with \"session.save_path\" setting in your Wordpress/PHP configuration. Please fix by modifying \"Temporary files location folder\" in admin menu, \"Wassup-->Options-->Manage Files & Database\"."
+msgstr "Wassup a détécté un probleme avec le paramétrage de  \"session.save_path\" dans votre configuration de Wordpress/PHP. Le probléme peut être résolu en modifiant \"Temporary files location folder\" dans le menu d'admin \"Wassup-->Options-->Manage Files & Database\"."
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:265
+msgid "Hide Search"
+msgstr "Cacher Recherche"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:268
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:872
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:912
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:119
+#: action.php:136
+msgid "Search"
+msgstr "Recherche"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:273
+msgid "Hide TopTen"
+msgstr "Cacher Top 10"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:276
+msgid "Show TopTen"
+msgstr "Montrer Top 10"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:282
+msgid "Collapse All"
+msgstr "Tous Réduir"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:285
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:510
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:590
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:834
+msgid "Expand All"
+msgstr "Tous développer"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:290
+msgid "Expand Cronology"
+msgstr "Développer le Chronologie"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:293
+msgid "Collapse Cronology"
+msgstr "Réduire la Chronologie"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:375
+msgid "Visitor Details"
+msgstr "Détails des Visiteurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:378
+msgid "Spy Visitors"
+msgstr "Visiteurs Espions"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:378
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:594
+msgid "SPY Visitors"
+msgstr "Visiteurs Espions"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:379
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:508
+msgid "Current Visitors Online"
+msgstr "Visiteurs Actuellement en Ligne"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:380
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:54
+#: settings.php:59
+msgid "Options"
+msgstr "Options"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:446
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:463
+msgid "Wassup options updated successfully"
+msgstr "Les options de Wassup ont étés mises à jour avec succés"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:451
+msgid "Wassup uninstall option updated successfully"
+msgstr "La désintallation à été effectuée avec succés"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:458
+msgid "Wassup spam options updated successfully"
+msgstr "Les options de spam de Wassup ont étés mises à jour avec succés"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:509
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:595
+msgid "Legend"
+msgstr "Légende"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:509
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:595
+msgid "Logged-in Users"
+msgstr "Utilisateurs Loggés"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:509
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:595
+msgid "Comments Authors"
+msgstr "Comentaires de l'Auteur"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:509
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:595
+msgid "Spiders/bots"
+msgstr "Spiders/bots"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:516
+msgid "Visitors online"
+msgstr "Visiteurs en Ligne"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:531
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:937
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:604
+#: main.php:607
+msgid "From your blog"
+msgstr "De votre Blog"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:534
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:940
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:607
+#: main.php:610
+msgid "Direct hit"
+msgstr "Hit Directe"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:552
+msgid "LOGGED IN USER"
+msgstr "UTILISATEUR LOGGE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:553
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:556
+msgid "COMMENT AUTHOR"
+msgstr "COMMENTAIRE DE L'AUTEUR"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:597
+msgid "Pause"
+msgstr "Pause"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:598
+msgid "Play"
+msgstr "Jouer"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:617
+msgid "Latest hits"
+msgstr "Derniers Hits"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:619
+msgid "WassUp recording is disabled"
+msgstr "L'enregistrement de Wassup est désactivé"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:728
+msgid "records deleted"
+msgstr "Enregistrements Effacés"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:766
+msgid "hide chart"
+msgstr "caché le graphique"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:766
+msgid "Hide the chart and site usage"
+msgstr "Caché le graphique et l'utilisation du site"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:769
+msgid "show chart"
+msgstr "montrer le graphique"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:769
+msgid "Show the chart and site usage"
+msgstr "Montrer le graphique et l'utilisation du site"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:775
+msgid "Summary for the last"
+msgstr "Résumé pour le dernier"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:780
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:204
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:209
+#: settings.php:229
+#: wassup.class.php:217
+msgid "24 hours"
+msgstr "24 heures"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:781
+msgid "7 days"
+msgstr "7 jours"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:782
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:206
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:211
+#: settings.php:231
+#: wassup.class.php:219
+msgid "1 month"
+msgstr "1 mois"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:783
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:209
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:214
+#: settings.php:234
+#: wassup.class.php:222
+msgid "1 year"
+msgstr "1 an"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:786
+msgid "Items per page"
+msgstr "Element par page"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:793
+msgid "Show items by"
+msgstr "Montrer les éléments par"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:812
+msgid "Visits"
+msgstr "Visites"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:813
+msgid "Pageviews"
+msgstr "Pages vues"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:814
+msgid "Pages/Visits"
+msgstr "Pages/Visites"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:817
+msgid "Spams"
+msgstr "Spams"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:825
+msgid "Too few records to print chart"
+msgstr "Trop peu d'enregistrement pour afficher le graphique"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:835
+msgid "Collapse Chronology"
+msgstr "Masquer la Chronologie"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:855
+msgid "Spam Options"
+msgstr "Options des Spam"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:857
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:141
+#: settings.php:161
+msgid "Enable/Disable Spam Check on Records"
+msgstr "Activer/Désactiver la Recherche de Spam dans les enregistrements"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:858
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:144
+#: settings.php:164
+msgid "Record Akismet comment spam attempts"
+msgstr "Enregistrer les commentaires Spam en attente dans Askimet"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:859
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:145
+#: settings.php:165
+msgid "Record referrer spam attempts"
+msgstr "Enregistrer les spam renvoyés en attente"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:860
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:128
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:155
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:212
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:226
+#: settings.php:147
+#: settings.php:175
+#: settings.php:311
+#: settings.php:325
+msgid "Save Settings"
+msgstr "Enregistrer les Paramétres"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:868
+msgid "Filter by marked IP"
+msgstr "Filtrer par IP marquées"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:868
+msgid "show marked items"
+msgstr "montrer les éléments marqués"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:869
+msgid "Searched for"
+msgstr "Cherché"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:870
+msgid "Auto refresh in"
+msgstr "Rafraîchissement automatique dans"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:870
+msgid "seconds"
+msgstr "seconde"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:872
+msgid "Show Top Ten"
+msgstr "Montrer le Top 10"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:904
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:111
+#: action.php:128
+msgid "Raw data"
+msgstr "Données brutes"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:907
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:114
+#: action.php:131
+msgid "IP"
+msgstr "IP"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:908
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:973
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:115
+#: action.php:132
+msgid "Hostname"
+msgstr "Nom d'Hôte"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:909
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:978
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:116
+#: action.php:133
+msgid "User Agent"
+msgstr "User Agent"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:910
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:973
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:117
+#: action.php:134
+msgid "Referrer"
+msgstr "Renvoi"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:915
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1049
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:122
+#: action.php:139
+msgid "OS"
+msgstr "OS"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:918
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:125
+#: action.php:142
+msgid "Browser"
+msgstr "Navigateur"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:921
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1047
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:128
+#: action.php:145
+msgid "Language"
+msgstr "Language"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:923
+msgid "Url Requested"
+msgstr "Url Demandé"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:924
+msgid "End Timestamp"
+msgstr "Horodatage de Fin"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:953
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:958
+msgid "delete"
+msgstr "effacer"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:953
+msgid "Delete ALL marked records with this IP"
+msgstr "Effacer TOUTES les marques enregistrés pour cette IP"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:955
+msgid "unmark"
+msgstr "Démarquer"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:955
+msgid "UnMark IP"
+msgstr "Démarquer l'IP"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:958
+msgid "Delete this record"
+msgstr "Effacer cet enregistrement"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:960
+msgid "mark"
+msgstr "marquer"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:960
+msgid "Mark IP"
+msgstr "Marquer cette IP"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:963
+msgid "show raw table"
+msgstr "montrer la table brute"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:963
+msgid "Show the items as raw table"
+msgstr "Montrer les éléments comme table brute"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:997
+msgid "SEARCH ENGINE"
+msgstr "MOTEUR DE RECHERCHE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:997
+msgid "page"
+msgstr "page"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:998
+msgid "KEYWORDS"
+msgstr "MOTS CLE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1022
+msgid "FEEDREADER"
+msgstr "FEEDREADER"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1023
+msgid "SUBSCRIBER(S)"
+msgstr "SOUSCRIPTEUR"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1027
+msgid "SPIDER"
+msgstr "ROBOTS DE CRAWLE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1035
+msgid "Probably SPAM!"
+msgstr "Probablement un SPAM!"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1036
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:192
+#: wassup.class.php:200
+msgid "Spam"
+msgstr "Spam"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1037
+msgid "Referer Spam"
+msgstr "Référence de Spam"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1050
+msgid "BROWSER"
+msgstr "NAVIGATEUR"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1052
+msgid "RESOLUTION"
+msgstr "RESOLUTION"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1093
+msgid "Check the official"
+msgstr "Vérifiez l'officiel"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1093
+msgid "page for updates, bug reports and your hints to improve it"
+msgstr "la page pour des mises à jour, des rapports des bogues et vos suggestions pour l'améliorer"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1093
+msgid "User Guide documentation"
+msgstr "Guide Utilisateur"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1553
+msgid "WassUp Plugin table has reached maximum size!"
+msgstr "La table du Plugin Wassup à atteinte sa taille maximal !"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1554
+msgid "Hi"
+msgstr "Salut"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1554
+msgid "you have received this email because your WassUp Database table at your Wordpress blog"
+msgstr "vous avez recu cet email car votre base de données Wassup sur votre site Wordpress"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1554
+msgid "has reached the maximum value you set in the options menu"
+msgstr "a atteinte la valeur maximale que vous avez définit le menu des options"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1555
+msgid "This is only a reminder, please take the actions you want in the WassUp options menu"
+msgstr "C'est un simple rappel, menez l'action que vous désiré dans le menu options de WassUp"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1555
+msgid "This alert now will be removed and you will be able to set a new one"
+msgstr "Cette alerte est maintenant effacé et vous pouvez maintenant endéfinir une nouvelle"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1556
+msgid "Thank you for using WassUp plugin. Check if there is a new version available here:"
+msgstr "Merci d'utiliser le plugin WassUp. Vérifier si il existe une nouvelle version disponible ici :"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1556
+msgid "Have a nice day!"
+msgstr "Bonne Journée!"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1918
+msgid "Error getting table details"
+msgstr "Erreur provenant des détails de la table"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1926
+#, php-format
+msgid "Delete any existing table %s"
+msgstr "Effacer toute les tables existantes %s"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1937
+#, php-format
+msgid "Table structure of table %s"
+msgstr "Structure de la table, table %s"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1945
+#, php-format
+msgid "Error with SHOW CREATE TABLE for %s."
+msgstr "Erreur avec SHOW CREATE TABLE pour %s"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1952
+#, php-format
+msgid "Error getting table structure of %s"
+msgstr "Erreur provenat de la structure de la table %s"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:1960
+#, php-format
+msgid "Data contents of table %s"
+msgstr "Contenu de la table %s"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2021
+#, php-format
+msgid "End of data contents of table %s"
+msgstr "Fin du contenu de la table %s"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2058
+msgid "Last searched terms"
+msgstr "Derniers thermes recherchés"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2071
+msgid "Last referers"
+msgstr "Dernieres références"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2084
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:116
+#: settings.php:129
+msgid "Top Browsers"
+msgstr "Top Navigateurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2097
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:117
+#: settings.php:130
+msgid "Top OS"
+msgstr "Top OS"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2119
+msgid "visitor(s) online"
+msgstr "visiteur(s) en ligne"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2122
+msgid "logged-in user(s)"
+msgstr "utilisateur(s) loggé(s)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2126
+msgid "comment author(s)"
+msgstr "commentaire(s) de l'auteur"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2128
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2281
+msgid "powered by"
+msgstr "propulsé par"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2159
+msgid "What title for the widget (default \"Visitors Online\")"
+msgstr "Quel titre pur le widget (par défaut \"Visitors Online\")"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2160
+msgid "What style sheet class for &lt;ul&gt; attribute (default \"links\")"
+msgstr "Quelle CSS pour &lt;ul&gt; (défaut \"links\")"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2161
+msgid "How many characters left? (For template compatibility - default 18)"
+msgstr "Laisser combien de caractères?  (18 par défaut pour la compatibilité des Templates)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2162
+msgid "Check if you want to show logged-in online users (default Yes)"
+msgstr "Vérifier si vous voulez montrer les utilisateurs connectés (Oui par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2163
+msgid "Check if you want to show comment-author online users (default Yes)"
+msgstr "Vérifier si vous voulez montrer les commentaires de l'auteur pour les utilisateurs en ligne (Oui par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2164
+msgid "Check if you want to show some last search referers (default Yes)"
+msgstr "Vérifier si vous voulez montrer les dernières références de recherche (Oui par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2165
+msgid "How many search referers want to show (default 5)"
+msgstr "Combien de références de recherche voulez vous montrer (5 par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2166
+msgid "Check if you want to show some last external referers (default Yes)"
+msgstr "Vérifier si vous voulez montrer les dernières références extérieur (Oui par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2167
+msgid "How many external referers want to show (default 5)"
+msgstr "Combien de références extérieur voulez vous montrer (5 par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2168
+msgid "Check if you want to show top browsers (default No - enabling it could slow down blog)"
+msgstr "Vérifier si vous voulez montrer les navigateurs les plus utilisés (Non par défaut-activer peut ralentir votre blog)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2169
+msgid "How many top browsers want to show (default 5)"
+msgstr "Combien de navigateurs les plus utilisés voulez vous afficher (5 par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2170
+msgid "Check if you want to show top operating systems (default No - enabling it could slow down blog)"
+msgstr "Vérifier si vous voulez montrer les OS les plus utilisés (Non par défaut-activer peut ralentir votre blog)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2171
+msgid "How many top operating systems want to show (default 5)"
+msgstr "Combien de navigateur les plus utilisés voulez vous afficher (5 par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/wassup.php:2189
+msgid "Wassup Widget"
+msgstr "Wassup Widget"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:31
+#: settings.php:31
+msgid "ATTENTION! Your WassUp table have reached the maximum value you set, I disabled the alert, you can re-enable it here."
+msgstr "ATTENTION! Votre table WassUp a atteinte sa taille maximale, je déactive l'alerte, vous pouvez la réactiver ici."
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:55
+#: settings.php:60
+msgid "You can add a sidebar Widget with some useful statistics information by activating the"
+msgstr "Vous pouvez ajouter un Widget à votre Sidebar avec quelques informations pratiques en activant le"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:56
+#: settings.php:61
+msgid "Wassup Widget in the Widgets menu option"
+msgstr "WassUp Widget dans le menu option des Widgets"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:57
+#: settings.php:62
+msgid "Select the options you want for the WassUp plugin"
+msgstr "Séléctionnez les options désirées pour le plugin WassUp"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:65
+#: settings.php:70
+msgid "General Setup"
+msgstr "Configuration Générale"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:66
+#: settings.php:71
+msgid "Statistics Recording"
+msgstr "Enregistrement des Statistiques"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:67
+#: settings.php:72
+msgid "Manage Files & Database"
+msgstr "Réglages Fichiers&BasedeDonnées"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:68
+#: settings.php:73
+msgid "Uninstall"
+msgstr "Désinstaller"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:72
+#: settings.php:77
+msgid "Your default screen resolution (browser width)"
+msgstr "Votre résolution décran par défaut (taille du navigateur)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:73
+#: settings.php:78
+msgid "Default screen resolution (in pixels)"
+msgstr "Résolution d'écran par défaut (en pixels)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:78
+#: settings.php:83
+msgid "Set minimum users level which can view and manage WassUp plugin (default Administrators)"
+msgstr "Définir le niveau minimum d'un utilisateur pour qu'il puisse administrer le plugin WassUp (Administrateur par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:83
+#: settings.php:96
+msgid "Visit Detail Settings"
+msgstr "Visitez les Paramétres Avancés"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:84
+#: settings.php:97
+msgid "Chart type - How many axes"
+msgstr "Type de Graphique - Combien d'axes"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:90
+#: settings.php:103
+msgid "Set how many minutes wait for automatic page refresh"
+msgstr "Définissez le nombre de minutes avant le rafraîchissement automatique de la page"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:90
+#: settings.php:103
+msgid "Current Visitors Online and Visitors Details"
+msgstr "Utilisateur Actuellement En Ligne & Détails des Visiteurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:91
+#: settings.php:104
+msgid "refresh minutes (default 3)"
+msgstr "rafraîchissement en minutes (3 par défaut)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:93
+#: settings.php:106
+msgid "Show visitor details for"
+msgstr "Montrer les détails du visiteur pour"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:98
+#: settings.php:111
+msgid "Number of items per page"
+msgstr "Nombre d'éléments par page"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:107
+#: settings.php:120
+msgid "Customize Top Ten List"
+msgstr "Customizez la Liste du Top 10"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:108
+#: settings.php:121
+msgid "Choose one or more items for your Top Ten list"
+msgstr "Chosissez un ou plusieurs éléments pour votre Liste du Top 10"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:108
+#: settings.php:121
+msgid "over 5 selections may cause horizontal scrolling"
+msgstr "plus de 5 selections peuvent causer des décalages horizontaux"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:111
+#: settings.php:124
+msgid "Top Searches"
+msgstr "Top Recherche"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:112
+#: settings.php:125
+msgid "Top Referrers"
+msgstr "Top Références"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:113
+#: settings.php:126
+msgid "Top Requests"
+msgstr "Top Requetes"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:118
+#: settings.php:131
+msgid "Top Locales"
+msgstr "Top Local"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:121
+#: settings.php:135
+msgid "Top Feeds"
+msgstr "Top Feeds"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:122
+#: settings.php:136
+msgid "Top Crawlers"
+msgstr "Top Moteur de Recherche"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:123
+#: settings.php:134
+msgid "Top Visitors"
+msgstr "Top Visiteurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:123
+msgid "users only"
+msgstr "utilisateurs seulement"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:128
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:155
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:212
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:226
+#: settings.php:147
+#: settings.php:175
+#: settings.php:311
+#: settings.php:325
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:128
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:155
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:212
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:226
+#: settings.php:147
+#: settings.php:175
+#: settings.php:311
+#: settings.php:325
+msgid "Reset to Default Settings"
+msgstr "Réinitialiser les paramétres par défaut"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:132
+#: settings.php:151
+msgid "Statistics Recording Settings"
+msgstr "Paramétres d'Enregistrement des Statistiques"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:133
+#: settings.php:152
+msgid "Enable/Disable Recording"
+msgstr "Activer/Déactiver Enregistrement"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:134
+#: settings.php:153
+msgid "Checkbox to record statistics for each type of \"visitor\""
+msgstr "Cochez l'enregistrement des statistiques pour chaque type de  \"visitor\""
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:136
+#: settings.php:155
+msgid "Record logged in users"
+msgstr "Enregistrer le\" logage\" des utilisateurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:137
+#: settings.php:156
+msgid "Record spiders and bots"
+msgstr "Enregistrer les Robots de crawle et les robots"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:138
+#: settings.php:157
+msgid "Record attack/exploit attempts (libwww-perl agent)"
+msgstr "Enregistrer les tentatives d'attaqueet d'exploitation (libwww-perl agent)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:142
+#: settings.php:162
+msgid "Checkbox to record statistics for each type of \"spam\""
+msgstr "Cochez l'enregistrement des statistiques pour chaque type de \"spam\""
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:148
+#: settings.php:168
+msgid "Enter source IPs to exclude from recording"
+msgstr "Entrez les IP source à exclure de l'enregistrement"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:150
+#: settings.php:170
+msgid "comma separated value (ex: 127.0.0.1, 10.0.0.1, etc...)"
+msgstr "valeur séparé par une virgule  (ex: 127.0.0.1, 10.0.0.1, etc...)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:151
+#: settings.php:171
+msgid "Enter requested URLs to exclude from recording"
+msgstr "Entrez les URL de requete à exclure de l'enregistrement"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:153
+#: settings.php:173
+msgid "comma separated value, don't put the entire url, only the last path or some word to exclude (ex: /category/wordpress, 2007, etc...)"
+msgstr "valeur séparé par des virgules, ne pas mettre l'URL en entier, seulement la fin du chemin ou quelques mots à exclure (ex: /category/wordpress, 2007, etc...)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:159
+msgid "Temporary files location folder"
+msgstr "Localisation du dossier des Fichiers Temporaires"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:160
+msgid "Current \"Save path\" directory for storing temporary files used to track visitor activity"
+msgstr "Chemin actuel \"Save path\" pour stocker les fichiers temporaires utilisés pour traquer l'activité des visiteurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:166
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:220
+#: settings.php:319
+msgid "WARNING"
+msgstr "ATTENTION"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:166
+msgid "Directory does not exist or is not writable. Please enter a different path above or change \"session.save_path\" in \"php.ini\" to point to a valid, writable folder"
+msgstr "Le chemin n'existe pas ou n'est pas \"writable\". Merci de spécifier un chemin différent ou de changer \"session.save_path\" en \"php.ini\" pour pointer vers un dossier valide"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:169
+msgid "Note: To adjust, modify the directory shown in the box above or edit \"sessions.save_path\" in"
+msgstr "Note: Pour ajuster, modifier le chemin affiché dans lazone ci-dessous éditer \"sessions.save_path\" dans"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:172
+msgid "Use absolute directory paths only. This value is usually"
+msgstr "Utilisez des chemins absolus seulement. Cette valeur est habituellement"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:178
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:180
+#: settings.php:203
+#: settings.php:205
+msgid "Rescan Old Records"
+msgstr "Rescanner les vieux enregistrements"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:179
+#: settings.php:204
+msgid "Statistical records collected by earlier versions of WassUp may not have the latest spider, search engine, and spam data properly identified.  Click the \"Rescan\" button to retroactively scan and update old records"
+msgstr "Les enregistrements statistiques colléctés par une ancienne version de WassUp peut ne pas poséder les derniers spider, moteurs de recherche, et données d'identification de spam. Cliquez le bouton  \"Rescan\" pour faire un scan rétroactif et mettre à jour les anciens enregistrements"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:183
+#: settings.php:208
+msgid "Select actions for table growth"
+msgstr "Séléctionnez une action pour les tables de croissance"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:184
+#: settings.php:209
+msgid "WassUp table grows very fast (especially if your blog is frequently visited), I recommend you to delete old records sometimes. You can select any option below to reset it, delete old records automatically or manually. (If you haven't database space problems you can leave the table as is)"
+msgstr "Les table Wassup grandissent trés vite (spécialement si votre blog est fréquement visité), je vous recommande de supprimer les anciens enregistrement de temps en temps. Vous pouvez séléctionner n'importe quelle options ci dessous pour la reseter, efface les anciens enregistrement automatiquement ou à la main. (Si vous n'avez pas de probleme de place avec votre base de données vous pouvez laisser les tables tel quel)"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:185
+#: settings.php:210
+msgid "Current WassUp table usage is"
+msgstr "L'espace occupé par les tables WassUp est actuellement de "
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:191
+#: settings.php:216
+msgid "records"
+msgstr "enregistrements"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:194
+#: settings.php:219
+msgid "Alert me"
+msgstr "Alerter moi"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:194
+#: settings.php:219
+msgid "email to"
+msgstr "envoyer un email à"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:194
+#: settings.php:219
+msgid "when table reaches"
+msgstr "quand les tables sont pleines"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:196
+#: settings.php:221
+msgid "Empty table"
+msgstr "Table Vide"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:196
+#: settings.php:221
+msgid "export table in SQL format"
+msgstr "exporter les tables au format SQL"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:197
+#: settings.php:222
+msgid "Automatically delete records older than:"
+msgstr "Effacer automatiquement les tables plus vieille que :"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:201
+#: settings.php:226
+msgid "Delete NOW records older than:"
+msgstr "Effacer maintenant les tables plus vieille que :"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:203
+#: settings.php:228
+msgid "Action is NOT undoable"
+msgstr "Cette action est IRRECUPERABLE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:205
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:210
+#: settings.php:230
+#: wassup.class.php:218
+msgid "1 week"
+msgstr "1 semaine"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:207
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:212
+#: settings.php:232
+#: wassup.class.php:220
+msgid "3 months"
+msgstr "3 mois"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:208
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:213
+#: settings.php:233
+#: wassup.class.php:221
+msgid "6 months"
+msgstr "6 mois"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:216
+#: settings.php:315
+msgid "Want to uninstall WassUp?"
+msgstr "Voulez vous déinstaller WassUp?"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:217
+#: settings.php:316
+msgid "No problem. Before you deactivate this plugin, check the box below to cleanup any data that was collected by WassUp that could be left behind."
+msgstr "Pas de problémes. Avant déasctivez le plugin, cochez la case ci dessous pour effacer toutes les entrées collecté par WassUp."
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:218
+#: settings.php:317
+msgid "Permanently remove WassUp data and settings from Wordpress"
+msgstr "Effecer définitivement les données et les paramétres de Wordpress"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:220
+#: settings.php:319
+msgid "All WassUp data and settings will be deleted upon deactivation of this plugin"
+msgstr "Toutes les données et les paramétres vont étre effacés à la déactivation de ce plugin"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:222
+#: settings.php:321
+msgid "This action cannot be undone. Before uninstalling WassUp, you should backup your Wordpress database first. WassUp data is stored in the table"
+msgstr "Cette opération est irreversible. Avant de désinstaller Wassup, vous devez faire une copie de votre base de données Wordpress. Les données de WassUp sont stockées dans la table"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/settings.php:224
+#: settings.php:323
+msgid "To help improve this plugin, we would appreciate your feedback at"
+msgstr "Pour aider ce plugin, nous apprécirions votre feedback à "
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:178
+#: wassup.class.php:186
+msgid "Administrators"
+msgstr "Administrateurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:179
+#: wassup.class.php:187
+msgid "Contributors"
+msgstr "Contributeurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:180
+#: wassup.class.php:188
+msgid "Authors"
+msgstr "Auteurs"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:184
+#: wassup.class.php:192
+msgid "One - two lines chart one axis"
+msgstr "Une - deux lignes de graphique un axe"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:185
+#: wassup.class.php:193
+msgid "Two - two lines chart two axes"
+msgstr "Deux - deux lignes de graphique et deux axes"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:189
+#: wassup.class.php:197
+msgid "Everything"
+msgstr "Tout"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:190
+msgid "Spiders"
+msgstr "Robots de crawle"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:191
+#: wassup.class.php:199
+msgid "No spider"
+msgstr "Trafic humain"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:193
+#: wassup.class.php:201
+msgid "No Spam"
+msgstr "Pas de Spam"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:194
+#: wassup.class.php:202
+msgid "No Spam, No Spider"
+msgstr "Pas de Spam, Pas de Robots de crawle"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:195
+#: wassup.class.php:203
+msgid "Users logged in"
+msgstr "Utilisateur Loggé"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:196
+#: wassup.class.php:204
+msgid "Comment authors"
+msgstr "Commentaire de l'Auteur"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:197
+#: wassup.class.php:205
+msgid "Referer from search engine"
+msgstr "Trafic issue des moteurs de recherche"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:198
+#: wassup.class.php:206
+msgid "Referer from ext link"
+msgstr "Trafic issue de liens externes"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/wassup.class.php:208
+#: wassup.class.php:216
+msgid "Don't delete anything"
+msgstr "Ne rien effacé"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:22
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:30
+#: action.php:38
+msgid "ERROR: file not found"
+msgstr "ERREUR: fichier non trouvé"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:66
+#: action.php:99
+msgid "ERROR: bad date"
+msgstr "ERREUR : mauvaise date"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:188
+#: action.php:196
+msgid "TOP QUERY"
+msgstr "TOP REQUETE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:199
+msgid "TOP REFERER"
+msgstr "TOP REFERENCE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:226
+#: action.php:259
+msgid "TOP REQUEST"
+msgstr "TOP REQUETE"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:239
+#: action.php:278
+msgid "TOP BROWSER"
+msgstr "TOP NAVIGATEUR"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:252
+#: action.php:297
+msgid "TOP OS"
+msgstr "TOP OS"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:266
+#: action.php:360
+msgid "This top ten doesn't include Spam records"
+msgstr "Ce top 10 n'inclue pas les enregistrement de spam"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:272
+#: action.php:365
+msgid "ERROR: Missing or unknown parameters"
+msgstr "ERREUR : Paramétre manquant ou incorrect"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/action.php:276
+#: action.php:371
+msgid "ERROR: Nothing to do here"
+msgstr "ERREUR : Rien à faire ici"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:85
+#: main.php:85
+msgid "Next"
+msgstr "Suivant"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:87
+#: main.php:87
+msgid "Previous"
+msgstr "Précédent"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:120
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:124
+#: main.php:120
+#: main.php:124
+msgid "It is necessary to specify the"
+msgstr "Il est nééessaire de spécifier le"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:120
+#: main.php:120
+msgid "number of pages"
+msgstr "nombre de pages"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:124
+#: main.php:124
+msgid "limit of items"
+msgstr "limite d'objets"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:124
+#: main.php:124
+msgid "to show per page"
+msgstr "montrer par page"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:209
+#: main.php:209
+msgid "Pages"
+msgstr "Pages"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:634
+#: main.php:648
+msgid "No visitor activity"
+msgstr "Pas d'activitée visiteur"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:807
+#: main.php:824
+msgid "Last 6 Hours"
+msgstr "Dernieres 6 heures"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:813
+#: main.php:830
+msgid "Last 24 Hours"
+msgstr "Dernieres 24 heures"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:819
+#: main.php:836
+msgid "Last 7 Days"
+msgstr "Dernier 7 jours"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:829
+#: main.php:846
+msgid "Last Month"
+msgstr "Dernier mois"
+
+#: /home/m1k/Desktop/wassup_translation/wassup/lib/main.php:839
+#: main.php:856
+msgid "Last Year"
+msgstr "Derniere année"
+
+#: action.php:234
+msgid "TOP REFERRER"
+msgstr "TOP REFERENCES"
+
+#: action.php:316
+msgid "TOP LOCALE"
+msgstr "TOP LOCAL"
+
+#: action.php:342
+msgid "TOP VISITOR"
+msgstr "TOP VISITEUR"
+
+#: settings.php:88
+msgid "Dashboard Settings"
+msgstr "Paramètres du Tableau de bord"
+
+#: settings.php:89
+msgid "Display small chart in the dashboard"
+msgstr "Affichager un petit graphique dans le tableau de bord"
+
+#: settings.php:92
+msgid "Time format"
+msgstr "Format de l'heure"
+
+#: settings.php:93
+msgid "Time format 12/24 hour"
+msgstr "Format de l'heure 12/24 heures"
+
+#: settings.php:140
+msgid "Additional website domains to exclude from Top Referrers"
+msgstr "Ajouter des noms de domaine à exclure des listes de recherche"
+
+#: settings.php:143
+msgid "Comma separated value"
+msgstr "Séparer les noms de domaine par une virgule"
+
+#: settings.php:144
+msgid "Don't list your website domain defined in WordPress"
+msgstr "Attention, ne listez pas votre nom de domaine."
+
+#: settings.php:158
+msgid "Record admin break-in/hacker attempts"
+msgstr "Enregistrer les tentatives de piratage"
+
+#: settings.php:237
+msgid "Server Settings and Memory Resources"
+msgstr "Configuration du serveur et resources mémoire"
+
+#: settings.php:238
+msgid "For information only. Some values may be adjustable in PHP startup file, php.ini or php5.ini"
+msgstr "Pour inforamtion. Quelques valeurs peuvent être ajustées dans le fichier de démarrage PHP, php.ini ou php5.ini"
+
+#: settings.php:239
+#: settings.php:240
+#: settings.php:267
+msgid "Version"
+msgstr "Version"
+
+#: settings.php:243
+#: settings.php:247
+#: settings.php:263
+#: settings.php:287
+#: settings.php:297
+#: settings.php:303
+msgid "unknown"
+msgstr "inconnu"
+
+#: settings.php:245
+msgid "Engine"
+msgstr "Machine"
+
+#: settings.php:250
+msgid "Query Cache Limit"
+msgstr "Limite de la taille du cache pour les requetes"
+
+#: settings.php:268
+msgid "Safe Mode"
+msgstr "Safe Mode"
+
+#: settings.php:269
+msgid "on"
+msgstr ""
+
+#: settings.php:270
+msgid "off"
+msgstr ""
+
+#: settings.php:272
+msgid "Memory Allocation"
+msgstr "Allocation Memoire"
+
+#: settings.php:290
+msgid "Memory Usage"
+msgstr "Utilisation Memoire"
+
+#: settings.php:300
+msgid "Script Timeout Limit"
+msgstr "Temps limite d'execution du script"
+
+#: settings.php:305
+msgid "Browser Capabilities File"
+msgstr "Capacités des dossiers du navigateur"
+
+#: settings.php:307
+msgid "not set"
+msgstr "pas définit"
+
+#: wassup.class.php:198
+msgid "Spider"
+msgstr "Robot de crawles"
+

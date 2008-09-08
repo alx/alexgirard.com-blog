@@ -52,6 +52,7 @@
 	background-repeat: repeat-x;
 }
 .sum-spy {
+	min-height: 54px;
 	position: relative;
 	clear: left;
 	border-bottom: 4px #8e8e8e solid;
@@ -94,6 +95,13 @@
 	margin: 0 !important;
 	padding: 0;
 	width: 100%;
+}
+.sum-det-spy {
+	float:left;
+	margin: 0px 0 0px 0;
+	padding: 0;
+	line-height: 20px;
+	font-size: 14px;
 }
 .sum-det {
 	margin: 0px 0 0px 0;
@@ -453,4 +461,7 @@ ul.usage-title {
 ul.usage-title li {
 	display: inline;
 	list-style-type: none;
+}
+.bubble {
+	font-size:11px;
 }
