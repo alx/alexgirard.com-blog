@@ -304,7 +304,7 @@
 				</div>
 				<div id="dsq-reblog-form">
 				</div>
-				<div class="powered-by"><a href="<?php echo DISQUS_URL; ?>">Powered by <span class="disqus">Disqus</span></a>&nbsp;&middot;&nbsp;<a href="{{ disqus_url }}">Learn more</a></div>
+				<div class="powered-by"><a href="<?php echo DISQUS_URL; ?>">Powered by <span class="disqus">Disqus</span></a>&nbsp;&middot;&nbsp;<a href="http://disqus.com/">Learn more</a></div>
 			</div> <!-- padding -->
 		</div> <!-- body -->
 		<div id="dsq-popup-bottom"></div>

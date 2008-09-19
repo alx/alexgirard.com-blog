@@ -4,7 +4,7 @@ Plugin Name: DISQUS Comment System
 Plugin URI: http://disqus.com/
 Description: The DISQUS comment system replaces your WordPress comment system with your comments hosted and powered by DISQUS. Head over to the Comments admin page to set up your DISQUS Comment System.
 Author: DISQUS.com <team@disqus.com>
-Version: 2.02-2869
+Version: 2.02-2969
 Author URI: http://disqus.com/
 
 */
@@ -222,19 +222,21 @@ function dsq_comment_count() {
 	}
 
 	?>
-
+	
 	<script type="text/javascript">
-	(function() {
-		var links = document.getElementsByTagName('a');
-		var query = '?';
-		for(var i = 0; i < links.length; i++) {
-			if(links[i].href.indexOf('#disqus_thread') >= 0) {
-				links[i].innerHTML = 'View Comments';
-				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+	// <![CDATA[
+		(function() {
+			var links = document.getElementsByTagName('a');
+			var query = '?';
+			for(var i = 0; i < links.length; i++) {
+				if(links[i].href.indexOf('#disqus_thread') >= 0) {
+					links[i].innerHTML = 'View Comments';
+					query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+				}
 			}
-		}
-		document.write('<script type="text/javascript" src="<?php echo DISQUS_URL ?>/forums/<?php echo strtolower(get_option('disqus_forum_url')); ?>/get_num_replies.js' + query + '"><' + '/script>');
-	})();
+			document.write('<script type="text/javascript" src="<?php echo DISQUS_URL ?>/forums/<?php echo strtolower(get_option('disqus_forum_url')); ?>/get_num_replies.js' + query + '"><' + '/script>');
+		})();
+	//]]>
 	</script>
 
 	<?php
