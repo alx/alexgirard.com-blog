@@ -446,9 +446,17 @@ function wp_cache_shutdown_callback() {
 	}
 
 	if( !isset( $wp_cache_gc ) )
-		$wp_cache_gc = 1000;
-	if( mt_rand( 0, $wp_cache_gc ) != 1 )
+		$wp_cache_gc = 3600;
+	$last_gc = get_option( "wpsupercache_gc_time" );
+
+	if( !$last_gc ) {
+		update_option( 'wpsupercache_gc_time', time() );
 		return;
+	}
+
+	if( $last_gc > ( time() - $wp_cache_gc ) ) // do garbage collection once every X hours.
+		return;
+	update_option( 'wpsupercache_gc_time', time() );
 
 	// we delete expired files, using a wordpress cron event
 	// since flush() does not guarantee hand-off to client - problem on Win32 and suPHP

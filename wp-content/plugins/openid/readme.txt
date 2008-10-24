@@ -3,7 +3,7 @@ Contributors: wnorris, factoryjoe
 Tags: openid, authentication
 Requires at least: 2.2
 Tested up to: 2.6.2
-Stable tag: 3.1
+Stable tag: 3.1.1
 
 Allows WordPress to provide and consumer OpenIDs for authentication of users and comments.
 
@@ -46,7 +46,7 @@ This plugin follows the [standard WordPress installation method][]:
 = Why do I get blank screens when I activate the plugin? =
 
 In some cases the plugin may have problems if not enough memory has been
-allocated to PHP.  Try ensuring that the PHP memory_limit is at least 8MB
+allocated to PHP.  Try ensuring that the PHP memory\_limit is at least 8MB
 (limits of 64MB are not uncommon).
 
 = Why don't `https` OpenIDs work? =
@@ -64,7 +64,7 @@ The easiest way to display the fact that your blog accepts OpenIDs is to enable
 the "Comment Form" option for the plugin.  This will allow the normal website
 field to be used for OpenIDs as well.  If this doesn't display properly for
 your particular theme or you simply prefer to have a separate OpenID field, you
-can modify your comments.php template to include an "openid_identifier" text field as
+can modify your comments.php template to include an "openid\_identifier" text field as
 part of your comment form.  For the default theme, this might look like:
 
 	<p><input type="text" name="openid_identifier" id="openid_identifier" />
@@ -93,11 +93,14 @@ report at <http://code.google.com/p/diso/issues/list>.
 
 == Changelog ==
 
+= version 3.1.1 =
+ - fix bug with OpenID Provider XRDS code that prevents ability to login to some sites (like plaxo.com)
+
 = version 3.1 =
- - added hidden constant to set custom comments post page (OPENID_COMMENTS_POST_PAGE)
+ - added hidden constant to set custom comments post page (OPENID\_COMMENTS\_POST\_PAGE)
  - additional option to skip name and email check for OpenID comments
  - use preferred username (from SREG) if possible when creating new account
- - truncate long URLs when used as display_name for comments
+ - truncate long URLs when used as display\_name for comments
  - numerous bug fixes, including bug with registration form
 
 = version 3.0 =
@@ -108,9 +111,9 @@ report at <http://code.google.com/p/diso/issues/list>.
  - major code refactoring
 
 = version 2.2.2 =
- - fix bug with "unauthorized return_to URL" (only known problem with [openid.pl][])
+ - fix bug with "unauthorized return\_to URL" (only known problem with [openid.pl][])
  - fix bug with comments containing non-latin characters
- - respect CUSTOM_USER_META_TABLE constant if present (also added CUSTOM_OPENID_IDENTITY_TABLE constant)
+ - respect CUSTOM\_USER\_META\_TABLE constant if present (also added CUSTOM\_OPENID\_IDENTITY\_TABLE constant)
  - add experimental support for Identity in the Browser
 
 = version 2.2.1 =
