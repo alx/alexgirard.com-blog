@@ -108,7 +108,7 @@ function display_available_for_hire(){
 	
 	// Display style
 	echo '<style type="text/css">
-	#banner {background:transparent url('.get_option('home').'/wp-content/plugins/hire/images/repeater.jpg) repeat-x scroll 0 0;bottom:0;margin:0;position:fixed;width:100%;color:#444444;font-family:"lucida grande",geneva,verdana,helvetica,arial,sans-serif;font-size:16px;text-align:center;}
+	#banner {background:transparent url('.get_option('home').'/wp-content/plugins/hire/images/repeater.jpg) repeat-x scroll 0 0;bottom:0;margin:0;position:fixed;width:100%;color:#444444;font-family:"lucida grande",geneva,verdana,helvetica,arial,sans-serif;font-size:16px;text-align:center;font-size-adjust:none;font-style:normal;font-variant:normal;font-weight:normal;line-height:normal;}
 	#banner, #banner .inner {height:78px;z-index:100;}
 	#banner .right {float:right;padding:10px 20px;}
 	banner .logos a {background-color:transparent;}
