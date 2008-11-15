@@ -74,7 +74,7 @@ function hire_conf() {
 </table>
 
 <h3> Specialities</h3>
-<p>Select the skills you want want to show in your banner. <?php echo get_option('hire_specialities'); ?></p>
+<p>Select the skills you want want to show in your banner.</p>
 
 <table class="form-table">
 	
