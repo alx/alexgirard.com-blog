@@ -41,12 +41,12 @@ function hire_conf() {
 		$specialities = "";
 		foreach ( $hire_specialities as $speciality ) :
 			if (array_key_exists('speciality_'.strtolower($speciality['name']), $_POST)) {
-				$specialities = strtolower($speciality['name'])."+".$specialities;
+				$specialities .= strtolower($speciality['name'])."+";
 			}
 		endforeach;
 		
 		// Remove trailing sign
-		$specialities = substr(get_option('hire_specialities'), 0, -1);
+		$specialities = substr($specialities, 0, -1);
 		update_option('hire_specialities', $specialities);
 	}
 ?>
