@@ -37,6 +37,7 @@ function hire_conf() {
 		
 		update_option('hire_name', $_POST['hire_name']);
 		update_option('hire_email', $_POST['hire_email']);
+		update_option('hire_portfolio', $_POST['hire_portfolio']);
 		
 		$specialities = "";
 		foreach ( $hire_specialities as $speciality ) :
@@ -70,6 +71,11 @@ function hire_conf() {
 	<tr valign="top">
 	<th scope="row"><?php _e('Email'); ?></th>
 	<td><input type="text" name="hire_email" value="<?php echo get_option('hire_email'); ?>" /></td>
+	</tr>
+	
+	<tr valign="top">
+	<th scope="row"><?php _e('Portfolio URL'); ?></th>
+	<td><input type="text" name="hire_portfolio" value="<?php echo get_option('hire_portfolio'); ?>" /></td>
 	</tr>
 </table>
 
@@ -139,8 +145,11 @@ function display_available_for_hire(){
 		    '.get_option('hire_name').' is available for Hire! 
 		  </div>
 			<div class="belowline">
-				<span>Email <a href="mailto:'.get_option('hire_email').'?body=We+want+'.get_option('hire_name').'+for+our+project">'.get_option('hire_email').'</a></span>
-			</div>
+				<span>Email <a href="mailto:'.get_option('hire_email').'?body=We+want+'.get_option('hire_name').'+for+our+project">'.get_option('hire_email').'</a></span>';
+		
+		if(strlen(get_option('hire_portfolio')) > 0) echo  '<span><a href="'.get_option('hire_portfolio').'">Portfolio</a></span>';
+				
+		echo '</div>
 		</div>
 	</div>';
 }
@@ -148,11 +157,13 @@ function display_available_for_hire(){
 function hire_install() {
 	update_option('hire_name', get_profile("display_name", "admin"));
 	update_option('hire_email', get_profile("user_email", "admin"));
+	update_option('hire_portfolio', "");
 }
 
 function hire_uninstall() {
 	delete_option('hire_name');
 	delete_option('hire_email');
+	delete_option('hire_portfolio');
 }
 
 register_activation_hook(__FILE__, 'hire_install');
